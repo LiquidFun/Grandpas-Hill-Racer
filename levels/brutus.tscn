@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://byg4o67v5makp"]
+[gd_scene load_steps=2 format=3 uid="uid://byg4o67v5makp"]
+
+[ext_resource type="PackedScene" uid="uid://db6ypoqkrdqdj" path="res://game/game_controller.tscn" id="1_onm43"]
 
 [node name="Brutenis" type="Node2D"]
+
+[node name="GameController" parent="." instance=ExtResource("1_onm43")]

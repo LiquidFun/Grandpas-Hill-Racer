@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2j5i8uqtglgp"]
+
+[ext_resource type="Texture2D" uid="uid://dm3is5d4t4wbe" path="res://entities/car/plank/plank.png" id="1_ec7ln"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4aeq"]
+size = Vector2(32, 128)
+
+[node name="Plank" type="Area2D" groups=["car"]]
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ec7ln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i4aeq")

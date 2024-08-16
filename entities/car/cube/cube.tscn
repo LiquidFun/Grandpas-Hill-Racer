@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://t7rs4seyk0y6"]
+
+[ext_resource type="Texture2D" uid="uid://bmrkqfb7ohanl" path="res://entities/car/cube/cube.png" id="1_jkjlb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1j0s"]
+size = Vector2(64, 64)
+
+[node name="Cube" type="Area2D" groups=["car"]]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jkjlb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["car"]]
+shape = SubResource("RectangleShape2D_u1j0s")
