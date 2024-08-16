@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bfc7wo5jje38e"]
+
+[node name="Car" type="RigidBody2D"]
+collision_layer = 2

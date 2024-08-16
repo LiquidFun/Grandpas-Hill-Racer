@@ -6,16 +6,34 @@ const PART_SCENES = [
 	preload("res://entities/car/wheel/wheel.tscn"),
 ]
 
+const CAR_SCENE = preload("res://entities/car/car/car.tscn")
+
 const ROTATE_BY = deg_to_rad(45/4.0)
 
 var selected_part: Area2D = null
 var first_part_was_placed = false
+var placed_parts = []
+var started = false
 
-func _ready():
-	pass 
-
-func _process(delta):
-	pass
+@onready var camera = $Camera2D
+@onready var car = CAR_SCENE.instantiate()
+ 
+func _start():
+	if started or len(placed_parts) == 0:
+		return
+	started = true
+	
+	if selected_part != null:
+		get_parent().remove_child(selected_part)
+	
+	add_sibling(car)
+	for part in placed_parts:
+		get_parent().remove_child(part)
+		part.get_node("Placement").disabled = true
+		part.get_node("Collision").disabled = false
+		car.add_child(part)
+		car.add_child(part.get_node("Collision"))
+		
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("item1"):
@@ -28,14 +46,22 @@ func _unhandled_input(event):
 		_select_part(3)
 	if Input.is_action_just_pressed("item5"):
 		_select_part(4)
+		
+	if Input.is_action_pressed("start"):
+		_start()
+		
+	if Input.is_action_pressed("pan"):
+		if event is InputEventMouseMotion:
+			camera.position -= event.screen_relative
 	
 	if selected_part != null:
 		if event is InputEventMouseMotion:
-			selected_part.global_position = event.position
+			selected_part.global_position = get_global_mouse_position()
 			_set_selected_part_color()
 			
 		if Input.is_action_just_pressed("place") and _can_selected_part_can_be_placed():
 			selected_part.modulate = Color(1, 1, 1, 1)
+			placed_parts.append(selected_part)
 			selected_part = null
 			first_part_was_placed = true
 			
@@ -65,7 +91,13 @@ func _select_part(index: int):
 		
 	selected_part = PART_SCENES[index].instantiate()
 	add_sibling(selected_part)
-	selected_part.position = get_viewport().get_mouse_position()
+	selected_part.global_position = get_global_mouse_position()
+	
+	# Await 2 physics frames until updating selected part color, because otherwise
+	# the overlapping areas call does not return anything
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+
 	_set_selected_part_color()
 
 func _set_selected_part_color():

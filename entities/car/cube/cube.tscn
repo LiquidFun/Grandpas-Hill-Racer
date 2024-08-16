@@ -1,15 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://t7rs4seyk0y6"]
+[gd_scene load_steps=4 format=3 uid="uid://t7rs4seyk0y6"]
 
 [ext_resource type="Texture2D" uid="uid://bmrkqfb7ohanl" path="res://entities/car/cube/cube.png" id="1_jkjlb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ilf7o"]
+size = Vector2(52, 52)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1j0s"]
 size = Vector2(64, 64)
 
 [node name="Cube" type="Area2D" groups=["car"]]
-z_index = 1
+collision_layer = 2
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_jkjlb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["car"]]
+[node name="Placement" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ilf7o")
+
+[node name="Collision" type="CollisionShape2D" parent="." groups=["car"]]
 shape = SubResource("RectangleShape2D_u1j0s")
+disabled = true
