@@ -45,7 +45,7 @@ func _start():
 	#camera.position = Vector2.ZERO
 	#car.position = placed_parts[0].position
 	
-	var now_placed = []
+	var now_placed = [car]
 	#hull.add_child(car)
 	for placed in placed_parts:
 		get_parent().remove_child(placed)
