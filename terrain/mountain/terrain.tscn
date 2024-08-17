@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://p4g2xmeyf7ug" path="res://terrain/mountain/sprite/Base.png" id="13_6rfim"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="14_awgln"]
 
-[sub_resource type="Resource" id="Resource_a8uvu"]
+[sub_resource type="Resource" id="Resource_bge2w"]
 script = ExtResource("2_iosai")
 texture_idx = 0
 flip = false
@@ -26,9 +26,9 @@ script = ExtResource("3_cuequ")
 position = Vector2(65.2142, -47.142)
 point_in = Vector2(-18.7319, -0.50164)
 point_out = Vector2(18.7319, 0.50164)
-properties = SubResource("Resource_a8uvu")
+properties = SubResource("Resource_bge2w")
 
-[sub_resource type="Resource" id="Resource_cmvg4"]
+[sub_resource type="Resource" id="Resource_hirgu"]
 script = ExtResource("2_iosai")
 texture_idx = 0
 flip = false
@@ -39,9 +39,9 @@ script = ExtResource("3_cuequ")
 position = Vector2(-53.2426, 43.4707)
 point_in = Vector2(22.3917, -4.94975)
 point_out = Vector2(-43.8406, 4.71405)
-properties = SubResource("Resource_cmvg4")
+properties = SubResource("Resource_hirgu")
 
-[sub_resource type="Resource" id="Resource_68d3m"]
+[sub_resource type="Resource" id="Resource_ekrja"]
 script = ExtResource("2_iosai")
 texture_idx = 0
 flip = false
@@ -52,9 +52,9 @@ script = ExtResource("3_cuequ")
 position = Vector2(47.96, 64.8353)
 point_in = Vector2(4.27196, -33.8346)
 point_out = Vector2(-48.0542, 6.74626)
-properties = SubResource("Resource_68d3m")
+properties = SubResource("Resource_ekrja")
 
-[sub_resource type="Resource" id="Resource_b7y36"]
+[sub_resource type="Resource" id="Resource_whshx"]
 script = ExtResource("2_iosai")
 texture_idx = 0
 flip = false
@@ -65,9 +65,9 @@ script = ExtResource("3_cuequ")
 position = Vector2(65.2142, -47.142)
 point_in = Vector2(-18.7319, -0.50164)
 point_out = Vector2(18.7319, 0.50164)
-properties = SubResource("Resource_b7y36")
+properties = SubResource("Resource_whshx")
 
-[sub_resource type="Resource" id="Resource_jvjxj"]
+[sub_resource type="Resource" id="Resource_ldo6k"]
 script = ExtResource("2_iosai")
 texture_idx = 0
 flip = false
@@ -78,9 +78,9 @@ script = ExtResource("3_cuequ")
 position = Vector2(-103.627, -4.56006)
 point_in = Vector2(-17.9509, 21.8807)
 point_out = Vector2(15.5671, -20.8212)
-properties = SubResource("Resource_jvjxj")
+properties = SubResource("Resource_ldo6k")
 
-[sub_resource type="Resource" id="Resource_0oq4j"]
+[sub_resource type="Resource" id="Resource_q1202"]
 script = ExtResource("2_iosai")
 texture_idx = -2
 flip = false
@@ -91,9 +91,9 @@ script = ExtResource("3_cuequ")
 position = Vector2(-44.3633, -44.0877)
 point_in = Vector2(-29.563, 10.1667)
 point_out = Vector2(26.3846, -9.37214)
-properties = SubResource("Resource_0oq4j")
+properties = SubResource("Resource_q1202")
 
-[sub_resource type="Resource" id="Resource_a57go"]
+[sub_resource type="Resource" id="Resource_gko4d"]
 script = ExtResource("2_iosai")
 texture_idx = 0
 flip = false
@@ -104,9 +104,9 @@ script = ExtResource("3_cuequ")
 position = Vector2(125.206, -35.348)
 point_in = Vector2(-16.0181, -20.2388)
 point_out = Vector2(16.0181, 20.2388)
-properties = SubResource("Resource_a57go")
+properties = SubResource("Resource_gko4d")
 
-[sub_resource type="Resource" id="Resource_dcjyg"]
+[sub_resource type="Resource" id="Resource_3234o"]
 script = ExtResource("2_iosai")
 texture_idx = 0
 flip = false
@@ -117,9 +117,9 @@ script = ExtResource("3_cuequ")
 position = Vector2(78.8991, 22.7921)
 point_in = Vector2(6.29961, -2.51984)
 point_out = Vector2(-6.29961, 2.51984)
-properties = SubResource("Resource_dcjyg")
+properties = SubResource("Resource_3234o")
 
-[sub_resource type="Resource" id="Resource_v5hn0"]
+[sub_resource type="Resource" id="Resource_qhqyj"]
 script = ExtResource("2_iosai")
 texture_idx = 0
 flip = false
@@ -130,7 +130,7 @@ script = ExtResource("3_cuequ")
 position = Vector2(-106.481, 31.659)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_v5hn0")
+properties = SubResource("Resource_qhqyj")
 
 [sub_resource type="Resource" id="Resource_5s7cv"]
 script = ExtResource("4_t1wi3")

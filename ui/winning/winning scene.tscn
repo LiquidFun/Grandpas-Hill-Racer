@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://765sm5dj4fvu"]
+
+[ext_resource type="Script" path="res://ui/winning/winning_scene.gd" id="1_ve08k"]
+[ext_resource type="Theme" uid="uid://ct1c3bqhs7bfp" path="res://ui/theme.tres" id="1_yl8b6"]
+
+[node name="Node2D" type="CanvasLayer"]
+script = ExtResource("1_ve08k")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.47451)
+anchors_preset = -1
+anchor_right = 1.005
+anchor_bottom = 0.998
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 41.4
+offset_bottom = 52.1599
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -10.0
+offset_bottom = 2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_yl8b6")
+theme_override_font_sizes/font_size = 150
+text = "You climbed to the Top!
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="NextLevel" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_yl8b6")
+text = "Next Level
+"
+
+[node name="Replay" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_yl8b6")
+text = "Replay Level
+"
+
+[node name="MainMenu" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_yl8b6")
+text = "Main Menu
+"
+
+[connection signal="button_down" from="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer/NextLevel" to="." method="_on_next_level_button_down"]
+[connection signal="button_down" from="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer/Replay" to="." method="_on_replay_button_down"]
+[connection signal="button_down" from="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_button_down"]
