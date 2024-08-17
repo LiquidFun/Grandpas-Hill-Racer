@@ -2,4 +2,8 @@
 
 ## Used assets
 
-- smartshape
+- smartshape2D
+
+## Art
+
+- Background from https://szadiart.itch.io/

@@ -105,13 +105,64 @@ func _start():
 
 			joint.node_b = part.get_path()
 		index += 1
-			
+		
+func getArray(shape: Shape2D, pos: Vector2, transf: Transform2D) -> PackedVector2Array:
+	var vertices: PackedVector2Array = PackedVector2Array()
+	if shape is CircleShape2D:
+		var circle_radius = shape.radius
+		var num_segments = 40
+		for i in range(num_segments):
+			var angle = i * (2 * PI / num_segments)
+			var x = circle_radius * cos(angle)
+			var y = circle_radius * sin(angle)
+			vertices.append(Vector2(x, y))
+	elif shape is RectangleShape2D:
+		var sz = shape.size
+		for x in [-.5,.5]:
+			for y in [-.5,.5]:
+				vertices.append(Vector2(sz.x*x, sz.y*y))
+	else:
+		assert(false)
+	
+	var vertices2: PackedVector2Array = PackedVector2Array()
+	for vertex in vertices:
+		vertices2.append(transf * vertex)
+	return vertices2
 			
 func _find_intersection_point(body1: CollisionObject2D, body2: CollisionObject2D) -> Vector2:
 	var shape1 = body1.get_node("Collision").shape
 	var shape2 = body2.get_node("Collision").shape
-	var a = shape1.collide_and_get_contacts(body1.get_node("Collision").global_transform, shape2, body2.get_node("Collision").global_transform)
+	
+	"""var a1 = getArray(shape1, body1.get_node("Collision").global_position, body1.get_node("Collision").global_transform)
+	var a2= getArray(shape2, body2.get_node("Collision").global_position, body2.get_node("Collision").global_transform)
+	
+	var diff = Geometry2D.intersect_polygons(a1, a2)
+	
+	if diff.size() == 0:
+		return Vector2.INF
 
+	var sum = Vector2.ZERO
+	var count = 0
+	for x in diff[0]:
+		sum += x
+		count += 1
+			
+	var mid = sum / count
+	
+		
+	for i in range(len(a1)):
+		a1[i] += (a1[i] - mid) * 0.01
+	for i in range(len(a2)):
+		a2[i] += (a2[i] - mid) * 0.01
+	
+	assert(Geometry2D.is_point_in_polygon(mid, a1))
+	assert(Geometry2D.is_point_in_polygon(mid, a2))"""
+	
+	var a = shape1.collide_and_get_contacts(body1.get_node("Collision").global_transform, shape2, body2.get_node("Collision").global_transform)
+	
+	# assert(Geometry2D.is_point_in_polygon(a[0], a1))
+	# assert(Geometry2D.is_point_in_polygon(a[0], a2))
+	
 	if a:
 		return a[0]
 	return Vector2.INF
@@ -120,7 +171,6 @@ func _find_intersection_point_wrong(body1: CollisionObject2D, body2: CollisionOb
 	var start_point = body1.global_position
 	var end_point = body2.global_position
 	print_debug(start_point, end_point)
-
 	
 	while start_point.distance_to(end_point) > 0.1: 
 		var mid_point = (start_point + end_point) / 2
@@ -153,10 +203,14 @@ func _point_in_body(point: Vector2, body: RigidBody2D):
 func _unhandled_input(event):
 	if Input.is_action_pressed("start"):
 		_start()
+<<<<<<< HEAD
 		
 	if Input.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
 			
+=======
+
+>>>>>>> 393aba3af285583f75a1a782d59e40e6ec9dda30
 	if not started:
 		if Input.is_action_just_pressed("item1"):
 			_select_part(0)

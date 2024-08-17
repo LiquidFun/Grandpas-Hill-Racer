@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ct1c3bqhs7bfp"]
+
+[ext_resource type="FontFile" uid="uid://d0ra8ewqa5gha" path="res://ui/New_Amsterdam/NewAmsterdam-Regular.ttf" id="1_kmq5w"]
+
+[resource]
+default_font = ExtResource("1_kmq5w")
+default_font_size = 64
+Button/colors/font_color = Color(0.886275, 0.709804, 0.34902, 1)
+Label/colors/font_color = Color(0.886275, 0.709804, 0.34902, 1)
+Label/colors/font_shadow_color = Color(0.627119, 0.406813, 0.166732, 1)
+Label/constants/shadow_offset_x = 4
+Label/constants/shadow_offset_y = 4
+TextEdit/constants/caret_width = 1
