@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://pxxmnsuaok7t"]
+
+[ext_resource type="Texture2D" uid="uid://dm3is5d4t4wbe" path="res://entities/car/plank/plank.png" id="1_ap4um"]
+[ext_resource type="Script" path="res://entities/car/rocket/rocket.gd" id="2_yywy0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfmlg"]
+size = Vector2(26, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4aeq"]
+size = Vector2(32, 64)
+
+[node name="Rocket" type="Area2D" groups=["car"]]
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.849769, 0, 0.281293, 1)
+scale = Vector2(1, 0.5)
+texture = ExtResource("1_ap4um")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.998412, 0.510772, 0.259879, 1)
+position = Vector2(0.000141203, 78)
+scale = Vector2(-0.57443, 0.459692)
+texture = ExtResource("1_ap4um")
+
+[node name="Feature" type="Node2D" parent="Sprite2D"]
+scale = Vector2(1, 2)
+script = ExtResource("2_yywy0")
+
+[node name="Placement" type="CollisionShape2D" parent="."]
+position = Vector2(9.09495e-13, -0.499998)
+shape = SubResource("RectangleShape2D_gfmlg")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(1.90735e-06, -1.52588e-05)
+shape = SubResource("RectangleShape2D_i4aeq")
+disabled = true

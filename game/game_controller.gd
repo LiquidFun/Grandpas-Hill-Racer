@@ -4,6 +4,7 @@ const PART_SCENES = [
 	preload("res://entities/car/cube/cube.tscn"),
 	preload("res://entities/car/plank/plank.tscn"),
 	preload("res://entities/car/tire/tire.tscn"),
+	preload("res://entities/car/rocket/rocket.tscn"),
 ]
 
 const CAR_SCENE = preload("res://entities/car/rigid/car.tscn")
@@ -53,6 +54,11 @@ func _start():
 		
 		var collision = placed.get_node("Collision")
 		placed.remove_child(collision)
+		
+		
+		#if placed.has_node("Function"):
+		#	var function = placed.get_node("Function")
+		#	placed.remove_child(collision)
 		
 		collision.global_rotation = placed.global_rotation
 		sprite.global_rotation = placed.global_rotation
@@ -203,14 +209,10 @@ func _point_in_body(point: Vector2, body: RigidBody2D):
 func _unhandled_input(event):
 	if Input.is_action_pressed("start"):
 		_start()
-<<<<<<< HEAD
 		
 	if Input.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
 			
-=======
-
->>>>>>> 393aba3af285583f75a1a782d59e40e6ec9dda30
 	if not started:
 		if Input.is_action_just_pressed("item1"):
 			_select_part(0)
