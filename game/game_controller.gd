@@ -10,7 +10,6 @@ const CAR_SCENE = preload("res://entities/car/rigid/car.tscn")
 const WHEEL_SCENE = preload("res://entities/car/rigid/wheel.tscn")
 const WHEEL_AXIS_SCENE = preload("res://entities/car/rigid/wheel_spring.tscn")
 		
-const POWER = 2_000_000
 const ROTATE_BY = deg_to_rad(45/4.0)
 
 var selected_part: Area2D = null
@@ -29,10 +28,15 @@ func _start():
 		get_parent().remove_child(selected_part)
 		
 	remove_child(camera)
+	var camera_pos = camera.global_position
 	
 	var car = CAR_SCENE.instantiate()
 	car.add_child(camera)
 	add_sibling(car)
+	camera.position = camera_pos
+	camera.position_smoothing_enabled = true
+	camera.position = Vector2.ZERO
+	car.position = placed_parts[0].position
 	#hull.add_child(car)
 	for part in placed_parts:
 		get_parent().remove_child(part)
@@ -56,15 +60,15 @@ func _start():
 			wheel_axis.add_child(wheel)
 			wheel.position = Vector2.ZERO
 			car.add_child(wheel_axis)
-			wheel_axis.position = part.position
+			wheel_axis.global_position = part.global_position
 			
 			wheel_axis.node_a = car.get_path()
 			wheel_axis.node_b = wheel.get_path()
 		else:
 			car.add_child(sprite)
 			car.add_child(collision)
-			sprite.position = part.position
-			collision.position = part.position
+			sprite.global_position = part.global_position
+			collision.global_position = part.global_position
 			collision.rotation = part.rotation
 			sprite.rotation = part.rotation
 			# part.position = Vector2.ZERO
@@ -82,14 +86,6 @@ func _unhandled_input(event):
 		_select_part(3)
 	if Input.is_action_just_pressed("item5"):
 		_select_part(4)
-
-	if started:
-		if Input.is_action_pressed("forward"):
-			for wheel in get_tree().get_nodes_in_group("wheel"):
-				wheel.apply_torque(POWER)
-		if Input.is_action_pressed("backward"):
-			for wheel in get_tree().get_nodes_in_group("wheel"):
-				wheel.apply_torque(-POWER)
 		
 	if Input.is_action_pressed("start"):
 		_start()

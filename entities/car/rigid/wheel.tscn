@@ -1,5 +1,12 @@
-[gd_scene format=3 uid="uid://c6j8w7su7y05y"]
+[gd_scene load_steps=2 format=3 uid="uid://c6j8w7su7y05y"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7rxev"]
+friction = 5.0
+rough = true
+bounce = 0.2
 
 [node name="Wheel" type="RigidBody2D" groups=["wheel"]]
 collision_layer = 4
 mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_7rxev")
+angular_damp = 10.0
