@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bfc7wo5jje38e" path="res://entities/car/rigid/car.tscn" id="1_6ssjv"]
 [ext_resource type="Texture2D" uid="uid://bmrkqfb7ohanl" path="res://entities/car/cube/cube.png" id="2_bcv0u"]
-[ext_resource type="PackedScene" uid="uid://bipco1samm3od" path="res://entities/car/rigid/wheel_spring.tscn" id="3_6p7d3"]
+[ext_resource type="PackedScene" uid="uid://bipco1samm3od" path="res://entities/car/rigid/wheel_joint.tscn" id="3_6p7d3"]
 [ext_resource type="PackedScene" uid="uid://c6j8w7su7y05y" path="res://entities/car/rigid/wheel.tscn" id="4_6f2uc"]
 [ext_resource type="Texture2D" uid="uid://bbpso5fe6g4ks" path="res://entities/car/tire/tire.png" id="5_pr5d5"]
 [ext_resource type="Texture2D" uid="uid://dm3is5d4t4wbe" path="res://entities/car/plank/plank.png" id="6_05s3f"]

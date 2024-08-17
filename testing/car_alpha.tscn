@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c2j5i8uqtglgp" path="res://entities/car/plank/plank.tscn" id="2_2k6jl"]
 [ext_resource type="PackedScene" uid="uid://c6j8w7su7y05y" path="res://entities/car/rigid/wheel.tscn" id="3_hcw3k"]
 [ext_resource type="PackedScene" uid="uid://dblt60xp5hs7f" path="res://entities/car/tire/tire.tscn" id="4_nl00a"]
-[ext_resource type="PackedScene" uid="uid://bipco1samm3od" path="res://entities/car/rigid/wheel_spring.tscn" id="5_jme7n"]
+[ext_resource type="PackedScene" uid="uid://bipco1samm3od" path="res://entities/car/rigid/wheel_joint.tscn" id="5_jme7n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1j0s"]
 size = Vector2(64, 64)

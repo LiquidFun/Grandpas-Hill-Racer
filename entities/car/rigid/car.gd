@@ -13,4 +13,4 @@ func _physics_process(delta):
 func _process(delta):
 	if has_node("Camera2D"):
 		var camera = get_node("Camera2D")
-		camera.offset = camera.offset.lerp(self.linear_velocity / 2, delta * 2)   # *1 Vector2(1, 2)
+		camera.offset = camera.offset.lerp(Vector2(0, -100) + self.linear_velocity / 2, delta * 2)   # *1 Vector2(1, 2)
