@@ -5,6 +5,7 @@ const PART_SCENES = [
 	preload("res://entities/car/plank/plank.tscn"),
 	preload("res://entities/car/tire/tire.tscn"),
 	preload("res://entities/car/rocket/rocket.tscn"),
+	preload("res://entities/car/spring/spring.tscn"),
 ]
 
 const CAR_SCENE = preload("res://entities/car/rigid/car.tscn")
@@ -17,6 +18,7 @@ const PART_SCENE = preload("res://entities/car/rigid/part.tscn")
 		
 const ROTATE_BY = deg_to_rad(45/4.0)
 
+var last_selected_index = -1
 var selected_part: Area2D = null
 var placed_parts = []
 @export var started = false
@@ -44,7 +46,6 @@ func _start():
 	#car.position = placed_parts[0].position
 	
 	var now_placed = []
-	var index = 0
 	#hull.add_child(car)
 	for placed in placed_parts:
 		get_parent().remove_child(placed)
@@ -64,54 +65,53 @@ func _start():
 		collision.global_rotation = placed.global_rotation
 		sprite.global_rotation = placed.global_rotation
 		
-		if index == 0:
-			car.add_child(sprite)
-			car.add_child(collision)
-			sprite.global_position = placed.global_position
-			collision.global_position = placed.global_position
-			now_placed.append(car)
+		#if index == 0:
+		#	car.add_child(sprite)
+		#	car.add_child(collision)
+		#	sprite.global_position = placed.global_position
+		#	collision.global_position = placed.global_position
+		#	now_placed.append(car)
 
-		else:
-			var is_tire = placed.is_in_group("tire") 
-			var part = (WHEEL_SCENE if is_tire else PART_SCENE).instantiate()
-			part.add_child(sprite)
-			part.add_child(collision)
-			sprite.position = Vector2.ZERO
-			collision.position = Vector2.ZERO
-			
-			var joint = (WHEEL_JOINT_SCENE if is_tire else PART_JOINT_SCENE).instantiate()
-			
-			
-			# part.get_colliding_bodies()
-			
-			car.add_child(joint)
-			joint.add_child(part)
-			
-			part.global_position = placed.global_position
-			
-			#await get_tree().physics_frame
-			#await get_tree().physics_frame
-			#await get_tree().physics_frame
-			#2continue
-			joint.node_a = car.get_path()
-			
-			for previous_part in now_placed:
-				var vec = _find_intersection_point(previous_part, part)
-				if vec != Vector2.INF:
-					joint.global_position = vec
+		#else:
+		var is_tire = placed.is_in_group("tire") 
+		var part = (WHEEL_SCENE if is_tire else PART_SCENE).instantiate()
+		part.add_child(sprite)
+		part.add_child(collision)
+		sprite.position = Vector2.ZERO
+		collision.position = Vector2.ZERO
 		
-					joint.node_a = previous_part.get_path()
-					
-					break
-			if is_tire:
-				joint.global_position = placed.global_position
-			else:
-				now_placed.append(part)
+		var joint = (WHEEL_JOINT_SCENE if is_tire else PART_JOINT_SCENE).instantiate()
+		
+		
+		# part.get_colliding_bodies()
+		
+		car.add_child(joint)
+		joint.add_child(part)
+		
+		part.global_position = placed.global_position
+		
+		#await get_tree().physics_frame
+		#await get_tree().physics_frame
+		#await get_tree().physics_frame
+		#2continue
+		joint.node_a = car.get_path()
+		
+		for previous_part in now_placed:
+			var vec = _find_intersection_point(previous_part, part)
+			if vec != Vector2.INF:
+				joint.global_position = vec
+	
+				joint.node_a = previous_part.get_path()
+				
+				break
+		if is_tire:
+			joint.global_position = placed.global_position
+		else:
+			now_placed.append(part)
 
-			part.global_position = placed.global_position
+		part.global_position = placed.global_position
 
-			joint.node_b = part.get_path()
-		index += 1
+		joint.node_b = part.get_path()
 	car.freeze = false
 	car.get_node("Collision").disabled = false
 		
@@ -246,6 +246,7 @@ func _unhandled_input(event):
 				selected_part.modulate = Color(1, 1, 1, 1)
 				placed_parts.append(selected_part)
 				selected_part = null
+				_select_part(last_selected_index)
 				
 			if Input.is_action_just_pressed("cancel"):
 				get_parent().remove_child(selected_part)
@@ -262,6 +263,9 @@ func _unhandled_input(event):
 			
 			
 func _can_selected_part_can_be_placed() -> bool:
+	if selected_part == null:
+		return false
+		
 	for area in selected_part.get_overlapping_areas():
 		if area.is_in_group("car"):
 			return true
@@ -270,6 +274,8 @@ func _can_selected_part_can_be_placed() -> bool:
 func _select_part(index: int):
 	if index >= len(PART_SCENES):
 		return
+		
+	last_selected_index = index
 		
 	if selected_part != null:
 		get_parent().remove_child(selected_part)
