@@ -1,0 +1,110 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfcmmrqeayfsu"]
+
+[ext_resource type="PackedScene" uid="uid://bfc7wo5jje38e" path="res://entities/car/rigid/car.tscn" id="1_6ssjv"]
+[ext_resource type="Texture2D" uid="uid://bmrkqfb7ohanl" path="res://entities/car/cube/cube.png" id="2_bcv0u"]
+[ext_resource type="PackedScene" uid="uid://bipco1samm3od" path="res://entities/car/rigid/wheel_spring.tscn" id="3_6p7d3"]
+[ext_resource type="PackedScene" uid="uid://c6j8w7su7y05y" path="res://entities/car/rigid/wheel.tscn" id="4_6f2uc"]
+[ext_resource type="Texture2D" uid="uid://bbpso5fe6g4ks" path="res://entities/car/tire/tire.png" id="5_pr5d5"]
+[ext_resource type="Texture2D" uid="uid://dm3is5d4t4wbe" path="res://entities/car/plank/plank.png" id="6_05s3f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fy5xn"]
+radius = 32.0156
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4aeq"]
+size = Vector2(32, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1j0s"]
+size = Vector2(64, 61)
+
+[node name="ManualCar" type="Node2D"]
+
+[node name="Car" parent="." instance=ExtResource("1_6ssjv")]
+mass = 100.0
+
+[node name="WheelSpring" parent="Car" instance=ExtResource("3_6p7d3")]
+position = Vector2(-216, 14)
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+bias = 0.038
+
+[node name="Wheel" parent="Car/WheelSpring" instance=ExtResource("4_6f2uc")]
+
+[node name="Collision" type="CollisionShape2D" parent="Car/WheelSpring/Wheel"]
+shape = SubResource("CircleShape2D_fy5xn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Car/WheelSpring/Wheel"]
+z_index = 10
+texture = ExtResource("5_pr5d5")
+
+[node name="WheelSpring2" parent="Car" instance=ExtResource("3_6p7d3")]
+position = Vector2(-148, 14)
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+bias = 0.047
+
+[node name="Wheel" parent="Car/WheelSpring2" instance=ExtResource("4_6f2uc")]
+
+[node name="Collision" type="CollisionShape2D" parent="Car/WheelSpring2/Wheel"]
+shape = SubResource("CircleShape2D_fy5xn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Car/WheelSpring2/Wheel"]
+z_index = 10
+texture = ExtResource("5_pr5d5")
+
+[node name="WheelSpring3" parent="Car" instance=ExtResource("3_6p7d3")]
+position = Vector2(-79, 14)
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+bias = 0.047
+
+[node name="Wheel" parent="Car/WheelSpring3" instance=ExtResource("4_6f2uc")]
+
+[node name="Collision" type="CollisionShape2D" parent="Car/WheelSpring3/Wheel"]
+shape = SubResource("CircleShape2D_fy5xn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Car/WheelSpring3/Wheel"]
+z_index = 10
+texture = ExtResource("5_pr5d5")
+
+[node name="WheelSpring4" parent="Car" instance=ExtResource("3_6p7d3")]
+position = Vector2(68, 14)
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+bias = 0.047
+
+[node name="Wheel" parent="Car/WheelSpring4" instance=ExtResource("4_6f2uc")]
+
+[node name="Collision" type="CollisionShape2D" parent="Car/WheelSpring4/Wheel"]
+shape = SubResource("CircleShape2D_fy5xn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Car/WheelSpring4/Wheel"]
+z_index = 10
+texture = ExtResource("5_pr5d5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Car"]
+position = Vector2(6.10352e-05, 0.000230789)
+rotation = 1.5708
+texture = ExtResource("6_05s3f")
+
+[node name="Collision" type="CollisionShape2D" parent="Car"]
+position = Vector2(6.29425e-05, 0.000231288)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_i4aeq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Car"]
+position = Vector2(-106, 0.000230789)
+rotation = 1.5708
+texture = ExtResource("6_05s3f")
+
+[node name="Collision2" type="CollisionShape2D" parent="Car"]
+position = Vector2(-106, 0.000231288)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_i4aeq")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Car"]
+position = Vector2(-184, -11)
+texture = ExtResource("2_bcv0u")
+
+[node name="Collision3" type="CollisionShape2D" parent="Car" groups=["car"]]
+position = Vector2(-184, -11)
+shape = SubResource("RectangleShape2D_u1j0s")

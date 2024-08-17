@@ -4,5 +4,6 @@
 
 [node name="GameController" type="Node2D"]
 script = ExtResource("1_n8moq")
+started = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

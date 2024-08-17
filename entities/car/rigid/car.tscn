@@ -2,3 +2,4 @@
 
 [node name="Car" type="RigidBody2D"]
 collision_layer = 2
+mass = 100.0

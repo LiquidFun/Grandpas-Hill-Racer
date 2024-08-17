@@ -3,20 +3,22 @@ extends Node2D
 const PART_SCENES = [
 	preload("res://entities/car/cube/cube.tscn"),
 	preload("res://entities/car/plank/plank.tscn"),
-	preload("res://entities/car/wheel/wheel.tscn"),
+	preload("res://entities/car/tire/tire.tscn"),
 ]
 
-const CAR_SCENE = preload("res://entities/car/car/car.tscn")
-
+const CAR_SCENE = preload("res://entities/car/rigid/car.tscn")
+const WHEEL_SCENE = preload("res://entities/car/rigid/wheel.tscn")
+const WHEEL_AXIS_SCENE = preload("res://entities/car/rigid/wheel_spring.tscn")
+		
+const POWER = 2_000_000
 const ROTATE_BY = deg_to_rad(45/4.0)
 
 var selected_part: Area2D = null
 var first_part_was_placed = false
 var placed_parts = []
-var started = false
+@export var started = false
 
 @onready var camera = $Camera2D
-@onready var car = CAR_SCENE.instantiate()
  
 func _start():
 	if started or len(placed_parts) == 0:
@@ -25,14 +27,48 @@ func _start():
 	
 	if selected_part != null:
 		get_parent().remove_child(selected_part)
+		
+	remove_child(camera)
 	
+	var car = CAR_SCENE.instantiate()
+	car.add_child(camera)
 	add_sibling(car)
+	#hull.add_child(car)
 	for part in placed_parts:
 		get_parent().remove_child(part)
-		part.get_node("Placement").disabled = true
+		#part.get_node("Placement").queue_free()
+		var sprite = part.get_node("Sprite2D")
+		part.remove_child(sprite)
 		part.get_node("Collision").disabled = false
-		car.add_child(part)
-		car.add_child(part.get_node("Collision"))
+		
+		var collision = part.get_node("Collision")
+		part.remove_child(collision)
+		
+		if part.is_in_group("tire"):
+			var wheel = WHEEL_SCENE.instantiate()
+			wheel.add_child(sprite)
+			wheel.add_child(collision)
+			sprite.position = Vector2.ZERO
+			collision.position = Vector2.ZERO
+			
+			var wheel_axis = WHEEL_AXIS_SCENE.instantiate()
+			
+			wheel_axis.add_child(wheel)
+			wheel.position = Vector2.ZERO
+			car.add_child(wheel_axis)
+			wheel_axis.position = part.position
+			
+			wheel_axis.node_a = car.get_path()
+			wheel_axis.node_b = wheel.get_path()
+		else:
+			car.add_child(sprite)
+			car.add_child(collision)
+			sprite.position = part.position
+			collision.position = part.position
+			collision.rotation = part.rotation
+			sprite.rotation = part.rotation
+			# part.position = Vector2.ZERO
+			# collision.position = Vector2.ZERO
 		
 
 func _unhandled_input(event):
@@ -46,15 +82,23 @@ func _unhandled_input(event):
 		_select_part(3)
 	if Input.is_action_just_pressed("item5"):
 		_select_part(4)
+
+	if started:
+		if Input.is_action_pressed("forward"):
+			for wheel in get_tree().get_nodes_in_group("wheel"):
+				wheel.apply_torque(POWER)
+		if Input.is_action_pressed("backward"):
+			for wheel in get_tree().get_nodes_in_group("wheel"):
+				wheel.apply_torque(-POWER)
 		
 	if Input.is_action_pressed("start"):
 		_start()
 		
-	if Input.is_action_pressed("pan"):
-		if event is InputEventMouseMotion:
-			camera.position -= event.screen_relative
+	#if Input.is_action_pressed("pan"):
+	#	if event is InputEventMouseMotion:
+	#		camera.position -= event.screen_relative
 	
-	if selected_part != null:
+	if !started and selected_part != null:
 		if event is InputEventMouseMotion:
 			selected_part.global_position = get_global_mouse_position()
 			_set_selected_part_color()

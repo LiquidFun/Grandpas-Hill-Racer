@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bipco1samm3od"]
+
+[node name="WheelSpring" type="PinJoint2D"]
+softness = 0.1
+motor_target_velocity = 1.71304

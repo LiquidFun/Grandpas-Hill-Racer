@@ -15,9 +15,15 @@ run/main_scene="res://levels/brutus.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/rmsmartshape/plugin.cfg")
+
 [global_group]
 
 car="whether the part can be part of a car"
+tire=""
+wheel=""
 
 [input]
 

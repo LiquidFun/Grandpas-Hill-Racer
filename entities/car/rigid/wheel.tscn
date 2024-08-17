@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c6j8w7su7y05y"]
+
+[node name="Wheel" type="RigidBody2D" groups=["wheel"]]
+collision_layer = 4
+mass = 20.0

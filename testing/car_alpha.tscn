@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://dugjmlcxqs8ec"]
+
+[ext_resource type="PackedScene" uid="uid://t7rs4seyk0y6" path="res://entities/car/cube/cube.tscn" id="1_noahc"]
+[ext_resource type="PackedScene" uid="uid://c2j5i8uqtglgp" path="res://entities/car/plank/plank.tscn" id="2_2k6jl"]
+[ext_resource type="PackedScene" uid="uid://c6j8w7su7y05y" path="res://entities/car/rigid/wheel.tscn" id="3_hcw3k"]
+[ext_resource type="PackedScene" uid="uid://dblt60xp5hs7f" path="res://entities/car/tire/tire.tscn" id="4_nl00a"]
+[ext_resource type="PackedScene" uid="uid://bipco1samm3od" path="res://entities/car/rigid/wheel_spring.tscn" id="5_jme7n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1j0s"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4aeq"]
+size = Vector2(32, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_07clh"]
+radius = 32.0156
+
+[node name="Car" type="RigidBody2D"]
+position = Vector2(-327.144, 508.039)
+rotation = 0.0190366
+collision_layer = 2
+sleeping = true
+linear_velocity = Vector2(-0.000357539, -0.000144479)
+
+[node name="Cube" parent="." instance=ExtResource("1_noahc")]
+position = Vector2(192.554, -453.081)
+
+[node name="Collision" type="CollisionShape2D" parent="." groups=["car"]]
+position = Vector2(417.554, -518.081)
+shape = SubResource("RectangleShape2D_u1j0s")
+
+[node name="Plank" parent="." instance=ExtResource("2_2k6jl")]
+position = Vector2(260.554, -448.081)
+
+[node name="_CollisionShape2D_13" type="CollisionShape2D" parent="."]
+position = Vector2(417.554, -518.081)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_i4aeq")
+
+[node name="_Area2D_10" parent="." instance=ExtResource("1_noahc")]
+position = Vector2(331.554, -452.081)
+
+[node name="_CollisionShape2D_14" type="CollisionShape2D" parent="." groups=["car"]]
+position = Vector2(417.554, -518.081)
+shape = SubResource("RectangleShape2D_u1j0s")
+
+[node name="Wheel" parent="." instance=ExtResource("3_hcw3k")]
+position = Vector2(420.835, -518.094)
+rotation = -0.15954
+sleeping = true
+linear_velocity = Vector2(-0.317203, -0.00604737)
+angular_velocity = -0.00990955
+
+[node name="Tire" parent="Wheel" instance=ExtResource("4_nl00a")]
+position = Vector2(-63, 88)
+
+[node name="Collision" type="CollisionShape2D" parent="Wheel"]
+shape = SubResource("CircleShape2D_07clh")
+
+[node name="WheelSpring" parent="." instance=ExtResource("5_jme7n")]
+position = Vector2(417.554, -518.081)
+node_a = NodePath("/root/Brutenis/Car")
+node_b = NodePath("/root/Brutenis/Car/Wheel")
+
+[node name="_RigidBody2D_15" parent="." instance=ExtResource("3_hcw3k")]
+position = Vector2(420.838, -518.094)
+rotation = -0.159173
+sleeping = true
+linear_velocity = Vector2(-0.323662, -0.00616992)
+angular_velocity = -0.0101113
+
+[node name="_Area2D_12" parent="_RigidBody2D_15" instance=ExtResource("4_nl00a")]
+position = Vector2(-256.209, 51.6703)
+
+[node name="Collision" type="CollisionShape2D" parent="_RigidBody2D_15"]
+position = Vector2(-255.219, 51.81)
+shape = SubResource("CircleShape2D_07clh")
+
+[node name="_DampedSpringJoint2D_16" parent="." instance=ExtResource("5_jme7n")]
+position = Vector2(221.745, -443.34)
+node_a = NodePath("/root/Brutenis/Car")
+node_b = NodePath("/root/Brutenis/Car/@RigidBody2D@15")
+
+[node name="_RigidBody2D_18" parent="." instance=ExtResource("3_hcw3k")]
+position = Vector2(4884.69, 234114)
+linear_velocity = Vector2(0, 9459.85)

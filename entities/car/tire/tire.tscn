@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dblt60xp5hs7f"]
 
-[ext_resource type="Texture2D" uid="uid://bbpso5fe6g4ks" path="res://entities/car/wheel/wheel.png" id="1_6qyhn"]
+[ext_resource type="Texture2D" uid="uid://bbpso5fe6g4ks" path="res://entities/car/tire/tire.png" id="1_00uv0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7rkr"]
 radius = 2.23607
@@ -8,7 +8,7 @@ radius = 2.23607
 [sub_resource type="CircleShape2D" id="CircleShape2D_07clh"]
 radius = 32.0156
 
-[node name="Wheel" type="Area2D" groups=["car"]]
+[node name="Tire" type="Area2D" groups=["car", "tire"]]
 collision_layer = 2
 collision_mask = 2
 
@@ -21,4 +21,4 @@ disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
-texture = ExtResource("1_6qyhn")
+texture = ExtResource("1_00uv0")
