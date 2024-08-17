@@ -1,13 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://db6ypoqkrdqdj"]
+[gd_scene load_steps=2 format=3 uid="uid://db6ypoqkrdqdj"]
 
 [ext_resource type="Script" path="res://game/game_controller.gd" id="1_n8moq"]
-[ext_resource type="PackedScene" uid="uid://bnnb6ewl7tj50" path="res://terrain/background/background.tscn" id="2_nw83q"]
 
 [node name="GameController" type="Node2D"]
 script = ExtResource("1_n8moq")
 started = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Background" parent="Camera2D" instance=ExtResource("2_nw83q")]
-position = Vector2(-82, 16)

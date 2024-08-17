@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://byg4o67v5makp"]
+[gd_scene load_steps=90 format=3 uid="uid://byg4o67v5makp"]
 
 [ext_resource type="PackedScene" uid="uid://db6ypoqkrdqdj" path="res://game/game_controller.tscn" id="1_onm43"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_closed.gd" id="2_82ttm"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://7032mym8qq6m" path="res://terrain/mountain/sprite/Bottom.png" id="13_82shh"]
 [ext_resource type="Texture2D" uid="uid://p4g2xmeyf7ug" path="res://terrain/mountain/sprite/Base.png" id="14_j3da7"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="15_rmb00"]
+[ext_resource type="PackedScene" uid="uid://bfc7wo5jje38e" path="res://entities/car/rigid/car.tscn" id="16_sh2u1"]
 
 [sub_resource type="Resource" id="Resource_b4spq"]
 script = ExtResource("3_dao2n")
@@ -561,8 +562,9 @@ render_offset = 0.0
 
 [node name="brutus" type="Node2D"]
 
-[node name="GameController" parent="." instance=ExtResource("1_onm43")]
+[node name="GameController" parent="." node_paths=PackedStringArray("car") instance=ExtResource("1_onm43")]
 started = false
+car = NodePath("../Car")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-78, 361)
@@ -580,3 +582,6 @@ collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 modulate = Color(1, 1, 1, 0.3)
 polygon = PackedVector2Array(951.676, -19.2737, 964.715, -20.518, 977.817, -22.7198, 1004.17, -29.8644, 1030.68, -40.4562, 1057.26, -54.2465, 1083.86, -70.9855, 1110.4, -90.4242, 1163.02, -136.4, 1264.55, -249.752, 1357.47, -378.327, 1555.23, -725.837, 1766.9, -162.239, 2272.03, -367.073, 1945.66, -971.836, 2503.39, -1099.55, 2866.02, -1315.5, 3295.81, -1783.5, 3711.63, -2351.36, 7131.65, -7149.24, 6971.81, -3095.16, 8503.45, -3185.81, 8362.35, -8054.11, 11658.5, -8668.86, 15841.4, -14595.5, 18210, -19544.5, 27906.3, -22759.8, 29801.3, -29432.9, 34458.2, -22850.5, 10611.5, 1343.03, -2617.06, 1529.58, -6798.22, 657.074, -9398.78, -3028.45, -8078.26, -5336.66, -6238.03, -6587.06, -7745.59, -5124.97, -8360.35, -3214.96, -6134.82, -197.684, -3132.65, 51.394, -2719.96, 59.9207, -2600.1, 51.3076, -2580.88, 47.603, -2566.28, 43.2352, -2556.47, 38.1801, -2551.58, 32.4471, -2328.41, -130.605, -2122.71, -251.274, -1934.06, -333.953, -1845.99, -362.42, -1762.03, -383.04, -1682.12, -396.36, -1606.2, -402.931, -1534.22, -403.303, -1466.14, -398.025, -1401.9, -387.646, -1341.44, -372.716, -1284.71, -353.786, -1231.66, -331.405, -1136.38, -278.486, -1055.18, -218.355, -987.642, -155.412, -933.331, -94.0536, -862.707, 6.32324, -839.855, 47.4975, -214.451, 91.2037, 367.619, 77.8465, 667.722, 42.5845)
+
+[node name="Car" parent="." instance=ExtResource("16_sh2u1")]
+position = Vector2(1, 291)

@@ -18,7 +18,4 @@ func _physics_process(delta):
 				var correction = angle - global_rotation
 				if correction > PI * 2:
 					correction = PI * 2 - correction
-				print(correction)
 				car.apply_torque(-10_000_000 * correction)
-			#await get_tree().create_timer(5).timeout
-			#get_parent().add_constant_force(Vector2.LEFT, 0)

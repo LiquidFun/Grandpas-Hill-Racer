@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b33s2gcdbbntv"]
 
 [node name="PartJoint" type="PinJoint2D"]
-bias = 0.07
 angular_limit_enabled = true
 angular_limit_lower = -0.0174533
 angular_limit_upper = 0.0174533

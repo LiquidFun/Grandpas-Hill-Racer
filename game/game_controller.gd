@@ -20,8 +20,9 @@ const ROTATE_BY = deg_to_rad(45/4.0)
 var selected_part: Area2D = null
 var placed_parts = []
 @export var started = false
+@export var car: Node
 
-@onready var camera = $Camera2D
+#@onready var camera = $Camera2D
  
 func _start():
 	if started or len(placed_parts) == 0:
@@ -31,16 +32,16 @@ func _start():
 	if selected_part != null:
 		get_parent().remove_child(selected_part)
 		
-	remove_child(camera)
-	var camera_pos = camera.global_position
+	#remove_child(camera)
+	#var camera_pos = camera.global_position
 	
-	var car = CAR_SCENE.instantiate()
-	car.add_child(camera)
-	add_sibling(car)
-	camera.global_position = camera_pos
-	camera.position_smoothing_enabled = true
-	camera.position = Vector2.ZERO
-	car.position = placed_parts[0].position
+	#var car = CAR_SCENE.instantiate()
+	#car.add_child(camera)
+	#add_sibling(car)
+	#camera.global_position = camera_pos
+	#camera.position_smoothing_enabled = true
+	#camera.position = Vector2.ZERO
+	#car.position = placed_parts[0].position
 	
 	var now_placed = []
 	var index = 0
@@ -111,6 +112,8 @@ func _start():
 
 			joint.node_b = part.get_path()
 		index += 1
+	car.freeze = false
+	car.get_node("Collision").disabled = false
 		
 func getArray(shape: Shape2D, pos: Vector2, transf: Transform2D) -> PackedVector2Array:
 	var vertices: PackedVector2Array = PackedVector2Array()
@@ -227,7 +230,7 @@ func _unhandled_input(event):
 		
 		if Input.is_action_pressed("pan"):
 			if event is InputEventMouseMotion:
-				camera.position -= event.screen_relative
+				car.get_node("Camera2D").position -= event.screen_relative
 				
 		if placed_parts:
 			if Input.is_action_just_pressed("undo"):
@@ -262,7 +265,7 @@ func _can_selected_part_can_be_placed() -> bool:
 	for area in selected_part.get_overlapping_areas():
 		if area.is_in_group("car"):
 			return true
-	return len(placed_parts) == 0
+	return len(placed_parts) == 0 and car == null
 	
 func _select_part(index: int):
 	if index >= len(PART_SCENES):
@@ -274,15 +277,17 @@ func _select_part(index: int):
 	selected_part = PART_SCENES[index].instantiate()
 	add_sibling(selected_part)
 	selected_part.global_position = get_global_mouse_position()
+
+
+	_set_selected_part_color()
+
+func _set_selected_part_color():	
 	
 	# Await 2 physics frames until updating selected part color, because otherwise
 	# the overlapping areas call does not return anything
 	await get_tree().physics_frame
 	await get_tree().physics_frame
-
-	_set_selected_part_color()
-
-func _set_selected_part_color():
+	
 	if _can_selected_part_can_be_placed():
 		selected_part.modulate = Color(0.5, 1, 0, 0.75)
 	else:
