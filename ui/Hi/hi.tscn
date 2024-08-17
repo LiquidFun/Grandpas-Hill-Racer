@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://csgc5c4uqlkgx"]
+
+[ext_resource type="Script" path="res://ui/Credits/credits.gd" id="1_2ldbq"]
+[ext_resource type="Texture2D" uid="uid://8itlfwt17h6i" path="res://ui/main_menu/BG1.png" id="2_rfqh3"]
+[ext_resource type="Theme" uid="uid://ct1c3bqhs7bfp" path="res://ui/theme.tres" id="3_ibwpf"]
+[ext_resource type="StyleBox" uid="uid://ct6wmpdyp4lbb" path="res://ui/panel.tres" id="4_7xm8p"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_2ldbq")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1918.0
+offset_bottom = 1069.0
+
+[node name="Bg1" type="Sprite2D" parent="Panel"]
+position = Vector2(967, 539)
+scale = Vector2(1.59495, 1.59495)
+texture = ExtResource("2_rfqh3")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("3_ibwpf")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 550
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_ibwpf")
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_ibwpf")
+theme_override_font_sizes/font_size = 120
+text = "MountainClibmer
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_7xm8p")
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Made by Brutenis Gliwa and Marian Zuska.
+We Hope you enjoy it! :)"
+
+[node name="Label3" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "External Assets:"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_7xm8p")
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "- Font by vladimirnikolic1
+- Background by szadiart
+- Music by"
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Hi" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Hi
+"
+
+[node name="Back" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Back
+"
+
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Hi" to="." method="_on_hi_button_down"]
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Back" to="." method="_on_back_button_down"]

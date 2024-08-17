@@ -1,11 +1,19 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ct1c3bqhs7bfp"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ct1c3bqhs7bfp"]
 
 [ext_resource type="FontFile" uid="uid://d0ra8ewqa5gha" path="res://ui/New_Amsterdam/NewAmsterdam-Regular.ttf" id="1_kmq5w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_632l1"]
+bg_color = Color(0.906517, 0.442413, 0.361495, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehypr"]
+bg_color = Color(0.893355, 0.16114, 0.486989, 1)
 
 [resource]
 default_font = ExtResource("1_kmq5w")
 default_font_size = 64
 Button/colors/font_color = Color(0.886275, 0.709804, 0.34902, 1)
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_632l1")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_ehypr")
 Label/colors/font_color = Color(0.886275, 0.709804, 0.34902, 1)
 Label/colors/font_shadow_color = Color(0.627119, 0.406813, 0.166732, 1)
 Label/constants/shadow_offset_x = 4

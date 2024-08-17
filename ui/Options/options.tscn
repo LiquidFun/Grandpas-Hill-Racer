@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://l1nwlkd4o82q"]
+
+[ext_resource type="Script" path="res://ui/Options/options.gd" id="1_o41pu"]
+[ext_resource type="Texture2D" uid="uid://817npvpwyevh" path="res://ui/main_menu/BG4.png" id="3_asj04"]
+[ext_resource type="Theme" uid="uid://ct1c3bqhs7bfp" path="res://ui/theme.tres" id="3_nx8x7"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_o41pu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1918.0
+offset_bottom = 1069.0
+
+[node name="Bg2" type="Sprite2D" parent="Panel"]
+position = Vector2(967, 539)
+scale = Vector2(8.275, 8.275)
+texture = ExtResource("3_asj04")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("3_nx8x7")
+theme_override_constants/margin_left = 1575
+theme_override_constants/margin_top = 500
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_nx8x7")
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_nx8x7")
+theme_override_font_sizes/font_size = 120
+text = "Options
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_nx8x7")
+text = "Music
+"
+
+[node name="Music" type="HSlider" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_nx8x7")
+value = 50.0
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_nx8x7")
+text = "Sound effects
+"
+
+[node name="SFX" type="HSlider" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_nx8x7")
+value = 50.0
+
+[node name="Exit" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Back
+"
+
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Music" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/SFX" to="." method="_on_sfx_value_changed"]
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Exit" to="." method="_on_exit_button_down"]

@@ -21,4 +21,5 @@ disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
+scale = Vector2(2.0625, 2.0625)
 texture = ExtResource("1_00uv0")
