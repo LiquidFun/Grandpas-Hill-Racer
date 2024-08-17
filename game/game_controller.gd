@@ -54,8 +54,8 @@ func _start():
 		var collision = placed.get_node("Collision")
 		placed.remove_child(collision)
 		
-		collision.rotation = placed.rotation
-		sprite.rotation = placed.rotation
+		collision.global_rotation = placed.global_rotation
+		sprite.global_rotation = placed.global_rotation
 		
 		if index == 0:
 			car.add_child(sprite)
@@ -74,16 +74,19 @@ func _start():
 			
 			var joint = (WHEEL_JOINT_SCENE if is_tire else PART_JOINT_SCENE).instantiate()
 			
-			car.add_child(part)
-			part.global_position = placed.global_position
 			
 			# part.get_colliding_bodies()
 			
 			car.add_child(joint)
+			joint.add_child(part)
 			
-			await get_tree().physics_frame
-			await get_tree().physics_frame
-			await get_tree().physics_frame
+			part.global_position = placed.global_position
+			
+			#await get_tree().physics_frame
+			#await get_tree().physics_frame
+			#await get_tree().physics_frame
+			#2continue
+			joint.node_a = car.get_path()
 			
 			for previous_part in now_placed:
 				var vec = _find_intersection_point(previous_part, part)
@@ -94,21 +97,30 @@ func _start():
 					
 					break
 			if is_tire:
-				joint.global_position = part.global_position
+				joint.global_position = placed.global_position
 			else:
 				now_placed.append(part)
-				
-			car.remove_child(part)
-			joint.add_child(part)
+
+			part.global_position = placed.global_position
+
 			joint.node_b = part.get_path()
-			part.position = Vector2.ZERO
 		index += 1
 			
-
+			
 func _find_intersection_point(body1: CollisionObject2D, body2: CollisionObject2D) -> Vector2:
+	var shape1 = body1.get_node("Collision").shape
+	var shape2 = body2.get_node("Collision").shape
+	var a = shape1.collide_and_get_contacts(body1.get_node("Collision").global_transform, shape2, body2.get_node("Collision").global_transform)
+
+	if a:
+		return a[0]
+	return Vector2.INF
+
+func _find_intersection_point_wrong(body1: CollisionObject2D, body2: CollisionObject2D) -> Vector2:
 	var start_point = body1.global_position
 	var end_point = body2.global_position
 	print_debug(start_point, end_point)
+
 	
 	while start_point.distance_to(end_point) > 0.1: 
 		var mid_point = (start_point + end_point) / 2
