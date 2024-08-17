@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhyvve20slt3o"]
+
+[ext_resource type="Texture2D" uid="uid://bmrkqfb7ohanl" path="res://entities/car/cube/cube.png" id="1_frrpb"]
+[ext_resource type="Script" path="res://entities/car/minicar/minicar.gd" id="1_ih0s8"]
+[ext_resource type="Texture2D" uid="uid://dm3is5d4t4wbe" path="res://entities/car/plank/plank.png" id="3_wb5q0"]
+[ext_resource type="PackedScene" uid="uid://bipco1samm3od" path="res://entities/car/rigid/wheel_joint.tscn" id="4_4bm8b"]
+[ext_resource type="PackedScene" uid="uid://c6j8w7su7y05y" path="res://entities/car/rigid/wheel.tscn" id="5_5ighj"]
+[ext_resource type="Texture2D" uid="uid://bbpso5fe6g4ks" path="res://entities/car/tire/tire.png" id="6_vsegw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1j0s"]
+size = Vector2(64, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8t8m0"]
+
+[node name="Minicar" type="RigidBody2D" groups=["car"]]
+scale = Vector2(0.7, 0.7)
+collision_layer = 2
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_ih0s8")
+
+[node name="Collision" type="CollisionShape2D" parent="." groups=["car"]]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_u1j0s")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.744991, 0, 0.327717, 1)
+z_index = -1
+position = Vector2(-14, -8)
+rotation = -2.35619
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_frrpb")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+modulate = Color(0.744991, 0, 0.327717, 1)
+z_index = -1
+position = Vector2(13, -8)
+rotation = -2.35619
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_frrpb")
+
+[node name="Plank2" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("3_wb5q0")
+
+[node name="WheelJoint" parent="." instance=ExtResource("4_4bm8b")]
+position = Vector2(-23, 6)
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+
+[node name="Wheel" parent="WheelJoint" instance=ExtResource("5_5ighj")]
+mass = 1.0
+freeze = true
+freeze_mode = 1
+power = 100000
+
+[node name="Tire" type="Sprite2D" parent="WheelJoint/Wheel"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_vsegw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WheelJoint/Wheel"]
+shape = SubResource("CircleShape2D_8t8m0")
+
+[node name="WheelJoint2" parent="." instance=ExtResource("4_4bm8b")]
+position = Vector2(24, 6)
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+
+[node name="Wheel" parent="WheelJoint2" instance=ExtResource("5_5ighj")]
+mass = 1.0
+freeze = true
+freeze_mode = 1
+power = 100000
+
+[node name="Tire" type="Sprite2D" parent="WheelJoint2/Wheel"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_vsegw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WheelJoint2/Wheel"]
+shape = SubResource("CircleShape2D_8t8m0")

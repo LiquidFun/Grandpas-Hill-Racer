@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6j8w7su7y05y"]
+[gd_scene load_steps=3 format=3 uid="uid://c6j8w7su7y05y"]
+
+[ext_resource type="Script" path="res://entities/car/rigid/wheel.gd" id="1_h2rg6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7rxev"]
 friction = 5.0
@@ -10,3 +12,4 @@ collision_layer = 4
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_7rxev")
 angular_damp = 10.0
+script = ExtResource("1_h2rg6")

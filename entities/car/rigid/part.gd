@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const POWER = 2_000_000
+const POWER = 1_000_000
 
 func _physics_process(delta):
 	#if rotation_degrees < -1:

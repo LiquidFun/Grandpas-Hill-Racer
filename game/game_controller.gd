@@ -6,6 +6,7 @@ const PART_SCENES = [
 	preload("res://entities/car/tire/tire.tscn"),
 	preload("res://entities/car/rocket/rocket.tscn"),
 	preload("res://entities/car/spring/spring.tscn"),
+	preload("res://entities/car/minicar/attachment.tscn"),
 ]
 
 const CAR_SCENE = preload("res://entities/car/rigid/car.tscn")
@@ -58,7 +59,7 @@ func _start():
 		placed.remove_child(collision)
 		
 		
-		#if placed.has_node("Function"):
+		#if placed.has_node("Fun23ction"):
 		#	var function = placed.get_node("Function")
 		#	placed.remove_child(collision)
 		
@@ -227,6 +228,8 @@ func _unhandled_input(event):
 			_select_part(3)
 		if Input.is_action_just_pressed("item5"):
 			_select_part(4)
+		if Input.is_action_just_pressed("item6"):
+			_select_part(5)
 		
 		if Input.is_action_pressed("pan"):
 			if event is InputEventMouseMotion:
