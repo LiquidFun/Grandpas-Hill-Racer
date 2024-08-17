@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkc7lfdsw47ab"
-path="res://.godot/imported/TopRight.png-d32bdf3dff01a30944604b678e4ce255.ctex"
+uid="uid://7032mym8qq6m"
+path="res://.godot/imported/Bottom.png-2babb3012dc822eeaab25afb9bd37201.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/environment/TopRight.png"
-dest_files=["res://.godot/imported/TopRight.png-d32bdf3dff01a30944604b678e4ce255.ctex"]
+source_file="res://terrain/mountain/sprite/Bottom.png"
+dest_files=["res://.godot/imported/Bottom.png-2babb3012dc822eeaab25afb9bd37201.ctex"]
 
 [params]
 

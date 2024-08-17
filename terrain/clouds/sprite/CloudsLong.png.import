@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhd62y00jsve6"
-path="res://.godot/imported/Props.png-4eb05b5b16afeb399809ed1d49942339.ctex"
+uid="uid://ybg7esvat6up"
+path="res://.godot/imported/CloudsLong.png-8fad4964faaec0b76055e2fab43ceca8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/environment/Props.png"
-dest_files=["res://.godot/imported/Props.png-4eb05b5b16afeb399809ed1d49942339.ctex"]
+source_file="res://terrain/clouds/sprite/CloudsLong.png"
+dest_files=["res://.godot/imported/CloudsLong.png-8fad4964faaec0b76055e2fab43ceca8.ctex"]
 
 [params]
 

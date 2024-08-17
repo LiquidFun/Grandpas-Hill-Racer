@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://baeutdggxhgrx"]
+
+[ext_resource type="Texture2D" uid="uid://cvg2x8gy6ckb3" path="res://terrain/clouds/sprite/Clouds.png" id="1_x5ct3"]
+
+[node name="Clouds" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+modulate = Color(0.674815, 0.674815, 0.674814, 0.584314)
+z_index = -20
+scroll_scale = Vector2(2, 1)
+repeat_size = Vector2(1221, 0)
+autoscroll = Vector2(110, 0)
+repeat_times = 4
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_x5ct3")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+modulate = Color(1, 1, 1, 0.780392)
+z_index = 20
+repeat_size = Vector2(1221, 0)
+autoscroll = Vector2(200, 0)
+repeat_times = 5
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_x5ct3")
