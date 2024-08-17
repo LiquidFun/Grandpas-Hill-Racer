@@ -153,6 +153,9 @@ func _point_in_body(point: Vector2, body: RigidBody2D):
 func _unhandled_input(event):
 	if Input.is_action_pressed("start"):
 		_start()
+		
+	if Input.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
 			
 	if not started:
 		if Input.is_action_just_pressed("item1"):
@@ -191,9 +194,12 @@ func _unhandled_input(event):
 				
 			if Input.is_action_just_pressed("rotate_left"):
 				selected_part.rotate(ROTATE_BY)
+				_set_selected_part_color()
+
 				
 			if Input.is_action_just_pressed("rotate_right"):
 				selected_part.rotate(-ROTATE_BY)
+				_set_selected_part_color()
 			
 			
 func _can_selected_part_can_be_placed() -> bool:
