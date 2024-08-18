@@ -38,6 +38,7 @@ tire=""
 wheel=""
 game_controller=""
 overlay=""
+part=""
 
 [input]
 
