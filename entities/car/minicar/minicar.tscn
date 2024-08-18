@@ -94,7 +94,6 @@ texture = ExtResource("3_wb5q0")
 
 [node name="Camera2D" type="Camera2D" parent="Minicar"]
 position = Vector2(0.142858, 0)
-scale = Vector2(1, 1)
 offset = Vector2(0, -300)
 enabled = false
 position_smoothing_enabled = true

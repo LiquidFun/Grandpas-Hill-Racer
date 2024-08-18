@@ -325,6 +325,7 @@ speed_scale = 2.0
 script = ExtResource("2_lsi4l")
 
 [node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, -10.4348)
 scale = Vector2(0.2, 0.2)
 
 [node name="Label" type="Label" parent="Node2D"]
