@@ -38,8 +38,10 @@ func _ready():
 	overlay = get_tree().get_first_node_in_group("overlay")
 	ingame_overlay = get_tree().get_first_node_in_group("ingame_overlay")
 	ingame_overlay.visible = false
+	Globals.play_i(0, true)
 
 func _start():
+	Globals.play_i(1, true)
 	if started or len(placed_parts) == 0 or hull == null:
 		return
 		
