@@ -4,14 +4,14 @@ extends RigidBody2D
 
 func set_freeze(status):
 	freeze = status
-	$WheelJoint/Wheel.freeze = status
-	$WheelJoint2/Wheel.freeze = status
+	$Wheel.freeze = status
+	$Wheel2.freeze = status
 	
 func _ready():
 	set_freeze(frozen)
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("minicar"):
+	if Input.is_action_just_pressed("minicar") and get_tree().get_first_node_in_group("game_controller").started:
 		set_freeze(false)
 		var camera = get_tree().get_first_node_in_group("camera")
 		camera.enabled = false
@@ -20,3 +20,9 @@ func _unhandled_input(_event):
 		self.reparent(get_tree().get_current_scene())
 		$Camera2D.enabled = true
 		
+
+func _physics_process(delta):
+	if !freeze:
+		var strength = Input.get_action_strength("left") - Input.get_action_strength("right")
+		# print(strength)
+		apply_torque(strength * 10_000_000 * delta)

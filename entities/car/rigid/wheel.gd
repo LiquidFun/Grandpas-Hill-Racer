@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var power = 5_000_000 * 60
+@export var power = 5_000_000 * 60
 
 func _physics_process(delta):
 	var strength = Input.get_action_strength("forward") - Input.get_action_strength("backward")

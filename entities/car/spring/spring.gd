@@ -52,5 +52,4 @@ func _physics_process(delta):
 				if correction > PI:
 					correction = PI * 2 - correction
 				var torque = 1_000_000_000 * sigmoid(correction) * delta
-				print(correction, "\t", torque)
 				car.apply_torque(torque)
