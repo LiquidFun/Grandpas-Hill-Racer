@@ -39,6 +39,7 @@ mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="Rocket" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture_normal = ExtResource("2_lbicx")
@@ -65,6 +66,7 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="Spring" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture_normal = ExtResource("2_lbicx")
@@ -91,6 +93,7 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="Minicar" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture_normal = ExtResource("2_lbicx")
