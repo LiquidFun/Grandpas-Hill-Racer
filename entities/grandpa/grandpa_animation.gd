@@ -17,6 +17,8 @@ func _ready() -> void:
 	self.play(anim)
 	print(anim)
 	flip_h = flip
+	if flip:
+		$Node2D.position.x += 10
 
 func play_i(i, start):
 	if is_start == start:
