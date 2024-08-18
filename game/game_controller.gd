@@ -143,7 +143,7 @@ func _find_intersection_point(body1: CollisionObject2D, body2: CollisionObject2D
 	var shape1 = body1.get_node("Collision").shape
 	var shape2 = body2.get_node("Collision").shape
 	
-	"""var a1 = getArray(shape1, body1.get_node("Collision").global_position, body1.get_node("Collision").global_transform)
+	var a1 = getArray(shape1, body1.get_node("Collision").global_position, body1.get_node("Collision").global_transform)
 	var a2= getArray(shape2, body2.get_node("Collision").global_position, body2.get_node("Collision").global_transform)
 	
 	var diff = Geometry2D.intersect_polygons(a1, a2)
@@ -166,10 +166,11 @@ func _find_intersection_point(body1: CollisionObject2D, body2: CollisionObject2D
 		a2[i] += (a2[i] - mid) * 0.01
 	
 	assert(Geometry2D.is_point_in_polygon(mid, a1))
-	assert(Geometry2D.is_point_in_polygon(mid, a2))"""
+	assert(Geometry2D.is_point_in_polygon(mid, a2))
+	
+	return mid
 	
 	var a = shape1.collide_and_get_contacts(body1.get_node("Collision").global_transform, shape2, body2.get_node("Collision").global_transform)
-	
 	# assert(Geometry2D.is_point_in_polygon(a[0], a1))
 	# assert(Geometry2D.is_point_in_polygon(a[0], a2))
 	

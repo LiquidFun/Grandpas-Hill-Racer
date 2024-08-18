@@ -156,6 +156,10 @@ minicar={
 2d_physics/layer_2="car"
 2d_physics/layer_3="wheels"
 
+[physics]
+
+2d/physics_engine="Rapier2D"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
