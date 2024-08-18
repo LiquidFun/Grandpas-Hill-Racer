@@ -5,6 +5,6 @@
 [node name="PartJoint" type="PinJoint2D"]
 softness = 10.0
 angular_limit_enabled = true
-angular_limit_lower = -0.174533
-angular_limit_upper = 0.174533
+angular_limit_lower = -0.0872665
+angular_limit_upper = 0.0872665
 script = ExtResource("1_o0qoa")

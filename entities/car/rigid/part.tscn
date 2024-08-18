@@ -11,4 +11,5 @@ bounce = 0.2
 collision_layer = 4
 mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_7rxev")
+angular_damp = 1.0
 script = ExtResource("1_pw77j")

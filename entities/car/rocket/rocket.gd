@@ -18,4 +18,4 @@ func _physics_process(delta):
 				var correction = angle - global_rotation
 				if correction > PI:
 					correction = PI * 2 - correction
-				car.apply_torque(-10_000_000 * correction)
+				car.apply_torque(-10_000_000 * correction * delta)

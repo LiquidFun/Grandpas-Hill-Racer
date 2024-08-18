@@ -1,9 +1,12 @@
 extends RigidBody2D
 
-var power = 3_000_000
+var power = 5_000_000 * 60
 
 func _physics_process(delta):
-	if Input.is_action_pressed("forward"):
-		apply_torque(power)
-	elif Input.is_action_pressed("backward"):
-		apply_torque(-power)
+	var strength = Input.get_action_strength("forward") - Input.get_action_strength("backward")
+	apply_torque(strength * power * delta)
+	#var limit = 3000
+	#print(angular_velocity)
+	#angular_velocity = clamp(angular_velocity, -limit, limit)
+	
+	#print(angular_velocity)

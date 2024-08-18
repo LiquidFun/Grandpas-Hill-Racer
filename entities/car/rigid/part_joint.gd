@@ -3,7 +3,7 @@ extends PinJoint2D
 var a
 var b
 
-const POWER = 500_000
+const POWER = 3_000_000
 
 var target_diff
 
@@ -26,4 +26,5 @@ func _physics_process(delta):
 		
 		var torque = POWER * rad_to_deg(sigmoid(diff))
 		#print(diff, "\t", torque)
-		#a.apply_torque(torque)
+		a.apply_torque(torque)
+		b.apply_torque(-torque)

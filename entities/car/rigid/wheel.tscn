@@ -3,12 +3,13 @@
 [ext_resource type="Script" path="res://entities/car/rigid/wheel.gd" id="1_h2rg6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7rxev"]
-friction = 5.0
+friction = 8.0
 rough = true
 
 [node name="Wheel" type="RigidBody2D" groups=["wheel"]]
 collision_layer = 4
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_7rxev")
+linear_damp = 0.1
 angular_damp = 10.0
 script = ExtResource("1_h2rg6")
