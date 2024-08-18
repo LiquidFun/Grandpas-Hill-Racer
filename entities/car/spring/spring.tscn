@@ -1,32 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpq1506mph2l2"]
+[gd_scene load_steps=6 format=3 uid="uid://dpq1506mph2l2"]
 
-[ext_resource type="Texture2D" uid="uid://ew4bl1k6vbvv" path="res://entities/car/spring/spring.png" id="1_syosg"]
+[ext_resource type="Texture2D" uid="uid://bny66i5rpy6wh" path="res://entities/car/spring/spring2.png" id="1_xq5lg"]
 [ext_resource type="Script" path="res://entities/car/spring/spring.gd" id="2_hvy5e"]
 [ext_resource type="Texture2D" uid="uid://bxsfrvw4jl3s3" path="res://entities/car/spring/arrow.png" id="3_p4l0v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfmlg"]
-size = Vector2(22, 12)
+size = Vector2(22, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6kal"]
+size = Vector2(17, 7)
 
 [node name="Spring" type="Area2D" groups=["car"]]
+z_index = 10
 collision_layer = 2
 collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(0, 6)
-scale = Vector2(1.4, 0.3)
-texture = ExtResource("1_syosg")
+scale = Vector2(1.4, 1)
+texture = ExtResource("1_xq5lg")
 script = ExtResource("2_hvy5e")
 
 [node name="Arrow" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-4.54747e-13, 46.6667)
+z_index = 1
+position = Vector2(0, 21)
 rotation = 3.14159
-scale = Vector2(1, 1.26861)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_p4l0v")
 
 [node name="Placement" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
+position = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_gfmlg")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(1.33333, -0.5)
+position = Vector2(0.5, -2.5)
+shape = SubResource("RectangleShape2D_g6kal")
 disabled = true

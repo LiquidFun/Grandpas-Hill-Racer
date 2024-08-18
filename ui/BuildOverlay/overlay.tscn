@@ -1,0 +1,301 @@
+[gd_scene load_steps=11 format=3 uid="uid://vt5calkbf2u1"]
+
+[ext_resource type="Script" path="res://ui/BuildOverlay/overlay.gd" id="1_lj18l"]
+[ext_resource type="Texture2D" uid="uid://cxjl5lu8v7d2" path="res://ui/BuildOverlay/Base.png" id="1_qji47"]
+[ext_resource type="Texture2D" uid="uid://6gvdicxtp8qr" path="res://ui/BuildOverlay/Base2.png" id="2_w4obu"]
+[ext_resource type="Texture2D" uid="uid://c1i8lmsq7lwpx" path="res://ui/BuildOverlay/Cube.png" id="3_fyf51"]
+[ext_resource type="Texture2D" uid="uid://0vlw0sxniqb" path="res://ui/BuildOverlay/Plank.png" id="3_nfnco"]
+[ext_resource type="Theme" uid="uid://ct1c3bqhs7bfp" path="res://ui/theme.tres" id="5_q6f1s"]
+[ext_resource type="Texture2D" uid="uid://cyvt8oli7i74b" path="res://ui/BuildOverlay/Wheel.png" id="5_rmc7p"]
+[ext_resource type="Texture2D" uid="uid://b5edu0dpqwf70" path="res://ui/BuildOverlay/Rocket.png" id="6_i7bqr"]
+[ext_resource type="Texture2D" uid="uid://bw2hfpcoo4g8e" path="res://ui/BuildOverlay/Spring.png" id="7_nd4af"]
+[ext_resource type="Texture2D" uid="uid://babjqf03q5bgs" path="res://ui/BuildOverlay/Minicar.png" id="8_qcun2"]
+
+[node name="Overlay" type="Control" groups=["overlay"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_lj18l")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.00268, 1)
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 900
+theme_override_constants/margin_bottom = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Box" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource("1_qji47")
+texture_pressed = ExtResource("2_w4obu")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/HBoxContainer/Box"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_right = 52.0
+offset_bottom = 40.0
+texture = ExtResource("3_fyf51")
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Box"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_colors/font_color = Color(0.166991, 0.147074, 0.134238, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.278431)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 46
+text = "1 "
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Box"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_font_sizes/font_size = 48
+text = "1 "
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Plank" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource("1_qji47")
+texture_pressed = ExtResource("2_w4obu")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/HBoxContainer/Plank"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_right = 52.0
+offset_bottom = 40.0
+texture = ExtResource("3_nfnco")
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Plank"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_colors/font_color = Color(0.166991, 0.147074, 0.134238, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.278431)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 46
+text = "2 "
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Plank"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_font_sizes/font_size = 48
+text = "2 "
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Wheel" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource("1_qji47")
+texture_pressed = ExtResource("2_w4obu")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/HBoxContainer/Wheel"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_right = 52.0
+offset_bottom = 40.0
+texture = ExtResource("5_rmc7p")
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Wheel"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_colors/font_color = Color(0.166991, 0.147074, 0.134238, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.278431)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 46
+text = "3 "
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Wheel"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_font_sizes/font_size = 48
+text = "3 "
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Rocket" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource("1_qji47")
+texture_pressed = ExtResource("2_w4obu")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/HBoxContainer/Rocket"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_right = 52.0
+offset_bottom = 40.0
+texture = ExtResource("6_i7bqr")
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Rocket"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_colors/font_color = Color(0.166991, 0.147074, 0.134238, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.278431)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 46
+text = "4 "
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Rocket"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_font_sizes/font_size = 48
+text = "4 "
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Spring" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource("1_qji47")
+texture_pressed = ExtResource("2_w4obu")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/HBoxContainer/Spring"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_right = 52.0
+offset_bottom = 40.0
+texture = ExtResource("7_nd4af")
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Spring"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_colors/font_color = Color(0.166991, 0.147074, 0.134238, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.278431)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 46
+text = "5 "
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Spring"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_font_sizes/font_size = 48
+text = "5 "
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Minicar" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource("1_qji47")
+texture_pressed = ExtResource("2_w4obu")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/HBoxContainer/Minicar"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_right = 52.0
+offset_bottom = 40.0
+texture = ExtResource("8_qcun2")
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Minicar"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_colors/font_color = Color(0.166991, 0.147074, 0.134238, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.278431)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 46
+text = "6 "
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Minicar"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_font_sizes/font_size = 48
+text = "6 "
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Box" to="." method="_on_box_toggled"]
+[connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Plank" to="." method="_on_plank_toggled"]
+[connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Wheel" to="." method="_on_wheel_toggled"]
+[connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Rocket" to="." method="_on_rocket_toggled"]
+[connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Spring" to="." method="_on_spring_toggled"]
+[connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Minicar" to="." method="_on_minicar_toggled"]

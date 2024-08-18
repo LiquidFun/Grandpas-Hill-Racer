@@ -1,39 +1,56 @@
-[gd_scene load_steps=5 format=3 uid="uid://pxxmnsuaok7t"]
+[gd_scene load_steps=7 format=3 uid="uid://b2pp2fxv878o"]
 
-[ext_resource type="Texture2D" uid="uid://dm3is5d4t4wbe" path="res://entities/car/plank/plank.png" id="1_ap4um"]
+[ext_resource type="Texture2D" uid="uid://cs3xkkttjj5kh" path="res://entities/car/rocket/rocket3.png" id="1_sfile"]
+[ext_resource type="Texture2D" uid="uid://cfqadqx3udt83" path="res://entities/car/rocket/rocket2.png" id="2_511n3"]
 [ext_resource type="Script" path="res://entities/car/rocket/rocket.gd" id="2_yywy0"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibill"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sfile")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_511n3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfmlg"]
-size = Vector2(26, 57)
+size = Vector2(53, 74.9999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4aeq"]
-size = Vector2(32, 64)
+size = Vector2(62.0003, 92)
 
 [node name="Rocket" type="Area2D" groups=["car"]]
+z_index = 10
 rotation = 1.5708
 collision_layer = 2
 collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.849769, 0, 0.281293, 1)
-scale = Vector2(1, 0.5)
-texture = ExtResource("1_ap4um")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
-modulate = Color(0.998412, 0.510772, 0.259879, 1)
-position = Vector2(0.000141203, 78)
-scale = Vector2(-0.57443, 0.459692)
-texture = ExtResource("1_ap4um")
+z_index = 1
 
 [node name="Feature" type="Node2D" parent="Sprite2D"]
 scale = Vector2(1, 2)
 script = ExtResource("2_yywy0")
 
+[node name="Sprite2D2" type="AnimatedSprite2D" parent="Sprite2D/Feature"]
+z_index = 1
+position = Vector2(-0.999917, 11.5)
+rotation = -1.5708
+scale = Vector2(1.00661, 2.01321)
+sprite_frames = SubResource("SpriteFrames_ibill")
+
 [node name="Placement" type="CollisionShape2D" parent="."]
-position = Vector2(9.09495e-13, -0.499998)
+position = Vector2(-1, -0.999996)
+scale = Vector2(0.851391, 0.851391)
 shape = SubResource("RectangleShape2D_gfmlg")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(1.90735e-06, -1.52588e-05)
+position = Vector2(-1.00001, -2)
+scale = Vector2(0.812357, 0.812357)
 shape = SubResource("RectangleShape2D_i4aeq")
 disabled = true

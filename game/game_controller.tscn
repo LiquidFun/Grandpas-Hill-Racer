@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" path="res://game/game_controller.gd" id="1_n8moq"]
 
-[node name="GameController" type="Node2D"]
+[node name="GameController" type="Node2D" groups=["game_controller"]]
 script = ExtResource("1_n8moq")
 started = true

@@ -35,6 +35,8 @@ enabled=PackedStringArray("res://addons/rmsmartshape/plugin.cfg")
 car="whether the part can be part of a car"
 tire=""
 wheel=""
+game_controller=""
+overlay=""
 
 [input]
 

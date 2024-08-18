@@ -1,10 +1,18 @@
 extends Node2D
 
 var angle = null
+enum {OFF, ON}
+
+@onready var sprite: AnimatedSprite2D = $Sprite2D2
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("rocket"):
 		angle = global_rotation + PI/2
+		sprite.frame = ON
+	if Input.is_action_just_released("rocket"):
+		sprite.frame = OFF
+		
+		
 
 func _physics_process(delta):
 	if Input.is_action_pressed("rocket"):
