@@ -8,7 +8,7 @@ rough = true
 bounce = 0.2
 
 [node name="Part" type="RigidBody2D" groups=["part"]]
-collision_layer = 4
+collision_layer = 2
 mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_7rxev")
 angular_damp = 1.0
