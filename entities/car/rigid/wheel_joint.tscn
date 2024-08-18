@@ -2,4 +2,7 @@
 
 [node name="WheelJoint" type="PinJoint2D"]
 z_index = 15
+softness = 1.0
+angular_limit_lower = -0.174533
+angular_limit_upper = 0.174533
 motor_target_velocity = 1.71304

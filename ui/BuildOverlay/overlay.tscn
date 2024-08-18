@@ -101,6 +101,7 @@ texture = ExtResource("3_nfnco")
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Plank"]
 custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 1
@@ -114,6 +115,7 @@ horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Plank"]
 custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 1
@@ -141,6 +143,7 @@ texture = ExtResource("5_rmc7p")
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Wheel"]
 custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 1
@@ -154,6 +157,7 @@ horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Wheel"]
 custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 1
@@ -181,6 +185,7 @@ texture = ExtResource("6_i7bqr")
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Rocket"]
 custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 1
@@ -194,6 +199,7 @@ horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Rocket"]
 custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 1
@@ -221,6 +227,7 @@ texture = ExtResource("7_nd4af")
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Spring"]
 custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 1
@@ -234,6 +241,7 @@ horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Spring"]
 custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 1
@@ -261,6 +269,7 @@ texture = ExtResource("8_qcun2")
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Minicar"]
 custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 1
@@ -274,6 +283,7 @@ horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/Minicar"]
 custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 1

@@ -29,7 +29,7 @@ func spring():
 		
 	tween.tween_callback(func (): retracted = true)
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("spring"):
 		if retracted:
 			spring()

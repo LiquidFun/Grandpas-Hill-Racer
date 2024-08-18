@@ -1,5 +1,10 @@
-[gd_scene format=3 uid="uid://b33s2gcdbbntv"]
+[gd_scene load_steps=2 format=3 uid="uid://b33s2gcdbbntv"]
+
+[ext_resource type="Script" path="res://entities/car/rigid/part_joint.gd" id="1_o0qoa"]
 
 [node name="PartJoint" type="PinJoint2D"]
-angular_limit_lower = -0.174533
-angular_limit_upper = 0.174533
+softness = 10.0
+angular_limit_enabled = true
+angular_limit_lower = -0.0872665
+angular_limit_upper = 0.0872665
+script = ExtResource("1_o0qoa")

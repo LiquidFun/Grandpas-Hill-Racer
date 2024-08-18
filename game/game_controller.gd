@@ -28,7 +28,7 @@ var selected_part: Area2D = null
 var selected_index = -1
 var placed_parts = []
 @export var started = false
-@export var car: Node
+@export var hull: Node
 
 #@onready var camera = $Camera2D
  
@@ -37,9 +37,11 @@ func _ready():
 
 func _start():
 	overlay.queue_free()
-	if started or len(placed_parts) == 0:
+	if started or len(placed_parts) == 0 or hull == null:
 		return
 	started = true
+	
+	var car = hull.get_node("Car")
 	
 	if selected_part != null:
 		get_parent().remove_child(selected_part)
@@ -61,19 +63,17 @@ func _start():
 		get_parent().remove_child(placed)
 		#part.get_node("Placement").queue_free()
 		var sprite = placed.get_node("Sprite2D")
-		placed.remove_child(sprite)
+		#placed.remove_child(sprite)
 		placed.get_node("Collision").disabled = false
 		
 		var collision = placed.get_node("Collision")
-		placed.remove_child(collision)
+		#placed.remove_child(collision)
 		
 		
 		#if placed.has_node("Fun23ction"):
 		#	var function = placed.get_node("Function")
 		#	placed.remove_child(collision)
 		
-		collision.global_rotation = placed.global_rotation
-		sprite.global_rotation = placed.global_rotation
 		
 		#if index == 0:
 		#	car.add_child(sprite)
@@ -85,8 +85,15 @@ func _start():
 		#else:
 		var is_tire = placed.is_in_group("tire") 
 		var part = (WHEEL_SCENE if is_tire else PART_SCENE).instantiate()
-		part.add_child(sprite)
-		part.add_child(collision)
+		sprite.owner = null
+		collision.owner = null
+		sprite.reparent(part)
+		collision.reparent(part)
+
+		collision.global_rotation = placed.global_rotation
+		sprite.global_rotation = placed.global_rotation
+		#part.add_child(sprite)
+		#part.add_child(collision)
 		sprite.position = Vector2.ZERO
 		collision.position = Vector2.ZERO
 		
@@ -95,8 +102,8 @@ func _start():
 		
 		# part.get_colliding_bodies()
 		
-		car.add_child(joint)
-		joint.add_child(part)
+		hull.add_child(joint)
+		hull.add_child(part)
 		
 		part.global_position = placed.global_position
 		
@@ -106,14 +113,38 @@ func _start():
 		#2continue
 		joint.node_a = car.get_path()
 		
+		var found = false
+		
 		for previous_part in now_placed:
-			var vec = _find_intersection_point(previous_part, part)
+			var vec = _find_intersection_point_via_polygon(previous_part, part)
 			if vec != Vector2.INF:
 				joint.global_position = vec
-	
+				found = true
 				joint.node_a = previous_part.get_path()
 				
 				break
+		if not found:
+			for previous_part in now_placed:
+				var vec = _find_intersection_point_via_contacts(previous_part, part)
+				if vec != Vector2.INF:
+					joint.global_position = vec
+		
+					found = true
+					joint.node_a = previous_part.get_path()
+					
+					break
+					
+		if not found:
+			var closest = car
+			for previous_part in now_placed:
+				if part.position.distance_to(closest.position) < part.position.distance_to(previous_part.position):
+					closest = previous_part
+			joint.global_position = (closest.global_position + part.global_position) / 2
+			joint.node_a = closest.get_path()
+					
+		if not found:
+			print("AAAAAAAAAAAAAAAAA")
+				
 		if is_tire:
 			joint.global_position = placed.global_position
 		else:
@@ -122,10 +153,17 @@ func _start():
 		part.global_position = placed.global_position
 
 		joint.node_b = part.get_path()
-	car.freeze = false
+		
+	for child in hull.get_children():
+		if child.has_method("calibrate"):
+			child.calibrate()
+		
+	for child in hull.get_children():
+		if child is RigidBody2D:
+			child.freeze = false
 	car.get_node("Collision").disabled = false
 		
-func getArray(shape: Shape2D, pos: Vector2, transf: Transform2D) -> PackedVector2Array:
+func getArray(shape: Shape2D, _pos: Vector2, transf: Transform2D) -> PackedVector2Array:
 	var vertices: PackedVector2Array = PackedVector2Array()
 	if shape is CircleShape2D:
 		var circle_radius = shape.radius
@@ -147,19 +185,23 @@ func getArray(shape: Shape2D, pos: Vector2, transf: Transform2D) -> PackedVector
 	for vertex in vertices:
 		vertices2.append(transf * vertex)
 	return vertices2
-			
-func _find_intersection_point(body1: CollisionObject2D, body2: CollisionObject2D) -> Vector2:
+		 		
+func _find_intersection_point_via_polygon(body1: CollisionObject2D, body2: CollisionObject2D) -> Vector2:
 	var shape1 = body1.get_node("Collision").shape
 	var shape2 = body2.get_node("Collision").shape
 	
-	"""var a1 = getArray(shape1, body1.get_node("Collision").global_position, body1.get_node("Collision").global_transform)
-	var a2= getArray(shape2, body2.get_node("Collision").global_position, body2.get_node("Collision").global_transform)
-	
+	var a1 = getArray(shape1, body1.get_node("Collision").global_position, body1.get_node("Collision").global_transform)
+	var a2 = getArray(shape2, body2.get_node("Collision").global_position, body2.get_node("Collision").global_transform)
+			
+	expand_polygon(a1)
+	expand_polygon(a2)
+		
 	var diff = Geometry2D.intersect_polygons(a1, a2)
 	
 	if diff.size() == 0:
 		return Vector2.INF
 
+	
 	var sum = Vector2.ZERO
 	var count = 0
 	for x in diff[0]:
@@ -167,18 +209,27 @@ func _find_intersection_point(body1: CollisionObject2D, body2: CollisionObject2D
 		count += 1
 			
 	var mid = sum / count
-	
-		
-	for i in range(len(a1)):
-		a1[i] += (a1[i] - mid) * 0.01
-	for i in range(len(a2)):
-		a2[i] += (a2[i] - mid) * 0.01
-	
+
 	assert(Geometry2D.is_point_in_polygon(mid, a1))
 	assert(Geometry2D.is_point_in_polygon(mid, a2))
+
+	return mid
 	
-	return mid"""
+func expand_polygon(a1):
+	var sum = Vector2.ZERO
+	var count = 0
+	for x in a1:
+		sum += x
+		count += 1
+			
+	var mid = sum / count
+			
+	for i in range(len(a1)):
+		a1[i] += (a1[i] - mid) * 0.1
 	
+func _find_intersection_point_via_contacts(body1: CollisionObject2D, body2: CollisionObject2D) -> Vector2:
+	var shape1 = body1.get_node("Collision").shape
+	var shape2 = body2.get_node("Collision").shape
 	var a = shape1.collide_and_get_contacts(body1.get_node("Collision").global_transform, shape2, body2.get_node("Collision").global_transform)
 	# assert(Geometry2D.is_point_in_polygon(a[0], a1))
 	# assert(Geometry2D.is_point_in_polygon(a[0], a2))
@@ -243,7 +294,7 @@ func _unhandled_input(event):
 		
 		if Input.is_action_pressed("pan"):
 			if event is InputEventMouseMotion:
-				car.get_node("Camera2D").position -= event.screen_relative
+				hull.get_node("Car").get_node("Camera2D").position -= event.screen_relative
 				
 		if placed_parts:
 			if Input.is_action_just_pressed("undo"):
@@ -290,7 +341,7 @@ func _can_selected_part_can_be_placed() -> bool:
 	for area in selected_part.get_overlapping_areas():
 		if area.is_in_group("car"):
 			return true
-	return len(placed_parts) == 0 and car == null
+	return len(placed_parts) == 0 and hull == null
 	
 func _select_part(index: int):
 	if index >= len(PART_SCENES):
@@ -307,7 +358,6 @@ func _select_part(index: int):
 	add_sibling(selected_part)
 	selected_part.global_position = get_global_mouse_position()
 
-
 	_set_selected_part_color()
 
 func _set_selected_part_color():	
@@ -317,7 +367,8 @@ func _set_selected_part_color():
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	
-	if _can_selected_part_can_be_placed():
-		selected_part.modulate = Color(0.5, 1, 0, 0.75)
-	else:
-		selected_part.modulate = Color(1, 0.5, 0.5, 0.75)
+	if selected_part != null:
+		if _can_selected_part_can_be_placed():
+			selected_part.modulate = Color(0.5, 1, 0, 0.75)
+		else:
+			selected_part.modulate = Color(1, 0.5, 0.5, 0.75)

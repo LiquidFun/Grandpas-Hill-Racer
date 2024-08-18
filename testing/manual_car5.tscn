@@ -1,0 +1,126 @@
+[gd_scene load_steps=12 format=3 uid="uid://c2bgfab64nusa"]
+
+[ext_resource type="PackedScene" uid="uid://bnnb6ewl7tj50" path="res://terrain/background/background.tscn" id="1_ich1f"]
+[ext_resource type="PackedScene" uid="uid://b33s2gcdbbntv" path="res://entities/car/rigid/part_joint.tscn" id="2_chv8a"]
+[ext_resource type="PackedScene" uid="uid://vc3epogfore4" path="res://entities/car/rigid/part.tscn" id="3_2hwjl"]
+[ext_resource type="Texture2D" uid="uid://dm3is5d4t4wbe" path="res://entities/car/plank/plank.png" id="4_6c25f"]
+[ext_resource type="PackedScene" uid="uid://bipco1samm3od" path="res://entities/car/rigid/wheel_joint.tscn" id="5_0p46q"]
+[ext_resource type="PackedScene" uid="uid://c6j8w7su7y05y" path="res://entities/car/rigid/wheel.tscn" id="6_i3ufx"]
+[ext_resource type="Texture2D" uid="uid://bbpso5fe6g4ks" path="res://entities/car/tire/tire.png" id="7_necf4"]
+[ext_resource type="Texture2D" uid="uid://bmrkqfb7ohanl" path="res://entities/car/cube/cube.png" id="8_wkdvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4aeq"]
+size = Vector2(32, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fy5xn"]
+radius = 32.0156
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1j0s"]
+size = Vector2(64, 61)
+
+[node name="ManualCar" type="Node2D"]
+
+[node name="Part2" parent="." instance=ExtResource("3_2hwjl")]
+position = Vector2(-161, 2)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Part2"]
+position = Vector2(55, -1.99977)
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("4_6c25f")
+
+[node name="Collision2" type="CollisionShape2D" parent="Part2"]
+position = Vector2(55, -1.99977)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_i4aeq")
+
+[node name="Part3" parent="." instance=ExtResource("3_2hwjl")]
+position = Vector2(-46, 1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Part3"]
+position = Vector2(55, -1.99977)
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("4_6c25f")
+
+[node name="Collision2" type="CollisionShape2D" parent="Part3"]
+position = Vector2(55, -1.99977)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_i4aeq")
+
+[node name="PartJoint" parent="." instance=ExtResource("2_chv8a")]
+position = Vector2(-161, 2)
+node_a = NodePath("../Part")
+node_b = NodePath("../Part2")
+
+[node name="PartJoint2" parent="." instance=ExtResource("2_chv8a")]
+position = Vector2(-46, 1)
+node_a = NodePath("../Part2")
+node_b = NodePath("../Part3")
+
+[node name="Wheel" parent="." instance=ExtResource("6_i3ufx")]
+position = Vector2(-216, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Wheel"]
+shape = SubResource("CircleShape2D_fy5xn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wheel"]
+z_index = 10
+scale = Vector2(2, 2)
+texture = ExtResource("7_necf4")
+
+[node name="Wheel2" parent="." instance=ExtResource("6_i3ufx")]
+position = Vector2(-70, 17)
+
+[node name="Collision" type="CollisionShape2D" parent="Wheel2"]
+shape = SubResource("CircleShape2D_fy5xn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wheel2"]
+z_index = 10
+scale = Vector2(2, 2)
+texture = ExtResource("7_necf4")
+
+[node name="WheelSpring" parent="." instance=ExtResource("5_0p46q")]
+position = Vector2(-216, 14)
+node_a = NodePath("../Part")
+node_b = NodePath("../Wheel")
+bias = 0.038
+
+[node name="WheelSpring2" parent="." instance=ExtResource("5_0p46q")]
+position = Vector2(-70, 17)
+node_a = NodePath("../Part2")
+node_b = NodePath("../Wheel2")
+bias = 0.047
+
+[node name="Wheel3" parent="." instance=ExtResource("6_i3ufx")]
+position = Vector2(68, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Wheel3"]
+shape = SubResource("CircleShape2D_fy5xn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wheel3"]
+z_index = 10
+scale = Vector2(2, 2)
+texture = ExtResource("7_necf4")
+
+[node name="WheelSpring4" parent="." instance=ExtResource("5_0p46q")]
+position = Vector2(68, 14)
+node_a = NodePath("../Part3")
+node_b = NodePath("../Wheel3")
+bias = 0.047
+
+[node name="Part" parent="." instance=ExtResource("3_2hwjl")]
+
+[node name="Sprite2D3" type="Sprite2D" parent="Part"]
+position = Vector2(-188, -15)
+texture = ExtResource("8_wkdvp")
+
+[node name="Collision3" type="CollisionShape2D" parent="Part" groups=["car"]]
+position = Vector2(-188, -15)
+shape = SubResource("RectangleShape2D_u1j0s")
+
+[node name="Camera2D" type="Camera2D" parent="Part" groups=["camera"]]
+position_smoothing_enabled = true
+
+[node name="Background" parent="Part/Camera2D" instance=ExtResource("1_ich1f")]
+position = Vector2(-82, 16)
