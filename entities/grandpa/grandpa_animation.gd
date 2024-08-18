@@ -38,7 +38,7 @@ func play_text(text: String):
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player") and not is_start:
+	if (body.is_in_group("player") or body.is_in_group("part")) and not is_start:
 		if first_entered:
 			play_text(dialogue[2])
 			first_entered = false
