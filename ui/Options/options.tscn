@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://l1nwlkd4o82q"]
+[gd_scene load_steps=6 format=3 uid="uid://l1nwlkd4o82q"]
 
 [ext_resource type="Script" path="res://ui/Options/options.gd" id="1_o41pu"]
 [ext_resource type="Texture2D" uid="uid://817npvpwyevh" path="res://ui/main_menu/BG4.png" id="3_asj04"]
 [ext_resource type="Theme" uid="uid://ct1c3bqhs7bfp" path="res://ui/theme.tres" id="3_nx8x7"]
 [ext_resource type="Script" path="res://ui/Options/change_movement.gd" id="4_7a4lt"]
+[ext_resource type="PackedScene" uid="uid://dnn3bcrny1kjd" path="res://entities/grandpa/grandpa.tscn" id="5_4k14q"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -92,6 +93,16 @@ layout_mode = 2
 text = "Back
 "
 
+[node name="Grandpa" parent="." instance=ExtResource("5_4k14q")]
+position = Vector2(113, 17)
+scale = Vector2(2, 2)
+anim = "Jump"
+flip = true
+is_start = false
+
+[node name="Node2D" parent="Grandpa" index="0"]
+visible = false
+
 [connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Music" to="." method="_on_music_value_changed"]
 [connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/SFX" to="." method="_on_sfx_value_changed"]
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer/AD" to="Panel/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer" method="swap_forward_side_actions"]
@@ -99,3 +110,5 @@ text = "Back
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer/WS" to="Panel/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer" method="swap_forward_side_actions"]
 [connection signal="toggled" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer/WS" to="." method="_on_ws_toggled"]
 [connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Exit2" to="." method="_on_exit_button_down"]
+
+[editable path="Grandpa"]

@@ -635,6 +635,7 @@ collision_layer = 0
 collision_mask = 0
 mass = 700.0
 physics_material_override = SubResource("PhysicsMaterial_vb446")
+freeze = true
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/Part2"]
 texture = ExtResource("22_pgi0q")

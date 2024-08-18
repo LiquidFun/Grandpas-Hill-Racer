@@ -3,8 +3,18 @@ extends Node
 
 var level_scenes = [
 	"res://ui/main_menu/main_menu.tscn",
-	"res://levels/marian.tscn", 
-	"res://levels/brutus.tscn",
+	#"res://levels/marian.tscn", 
+	#"res://levels/brutus.tscn",
+	"res://levels/level_01.tscn",
+	"res://levels/level_02.tscn",
+	"res://levels/level_03.tscn",
+	"res://levels/level_04.tscn",
+	"res://levels/level_05.tscn",
+	"res://levels/level_rigid.tscn",
+	# "res://levels/level_01_second.tscn",
+	"res://levels/level_mini.tscn",
+	"res://levels/level_spring.tscn",
+	"res://levels/level_brutus.tscn",
 ]
 
 var current_level_id = 0

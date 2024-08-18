@@ -20,8 +20,8 @@ const sounds: Dictionary = {
 	"wrong": preload("res://audio/sfx/wrong-47985.mp3"),
 }
 
-var music_volume: float = 30
-var sound_volume: float = 10
+var music_volume: float = 50
+var sound_volume: float = 20
 
 @onready var background_player = AudioStreamPlayer.new()
 

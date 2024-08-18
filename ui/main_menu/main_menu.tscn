@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://rlpwe74qwk21"]
+[gd_scene load_steps=5 format=3 uid="uid://rlpwe74qwk21"]
 
 [ext_resource type="Script" path="res://ui/main_menu/main_menu.gd" id="1_80l0d"]
 [ext_resource type="Theme" uid="uid://ct1c3bqhs7bfp" path="res://ui/theme.tres" id="2_8lxpy"]
 [ext_resource type="Texture2D" uid="uid://817npvpwyevh" path="res://ui/main_menu/BG4.png" id="3_4tigc"]
+[ext_resource type="PackedScene" uid="uid://dnn3bcrny1kjd" path="res://entities/grandpa/grandpa.tscn" id="4_4juhw"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -21,8 +22,10 @@ texture = ExtResource("3_4tigc")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -164.0
+offset_top = 15.0
+offset_right = 1910.0
+offset_bottom = 657.0
 theme = ExtResource("2_8lxpy")
 theme_override_constants/margin_left = 1225
 theme_override_constants/margin_top = 30
@@ -35,8 +38,7 @@ theme = ExtResource("2_8lxpy")
 layout_mode = 2
 theme = ExtResource("2_8lxpy")
 theme_override_font_sizes/font_size = 120
-text = "MountainClimber
-"
+text = "Grandpa's Hill Racer"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
 layout_mode = 2
@@ -61,11 +63,23 @@ layout_mode = 2
 text = "Exit Game
 "
 
+[node name="Grandpa" parent="Panel" instance=ExtResource("4_4juhw")]
+position = Vector2(880, 123)
+scale = Vector2(6, 6)
+anim = "Jump"
+flip = true
+is_start = false
+
+[node name="Node2D" parent="Panel/Grandpa" index="0"]
+visible = false
+
 [connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Start game" to="." method="_on_start_game_button_down"]
 [connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Start game" to="." method="_play_sound"]
-[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Options" to="." method="_play_sound"]
 [connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Options" to="." method="_on_options_button_down"]
-[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Credits" to="." method="_play_sound"]
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Options" to="." method="_play_sound"]
 [connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Credits" to="." method="_on_credits_button_down"]
-[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Exit" to="." method="_on_exit_button_down"]
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Credits" to="." method="_play_sound"]
 [connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Exit" to="." method="_play_sound"]
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Exit" to="." method="_on_exit_button_down"]
+
+[editable path="Panel/Grandpa"]
