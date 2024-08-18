@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=3 uid="uid://2brc13ihq3l4"]
+[gd_scene load_steps=131 format=4 uid="uid://2brc13ihq3l4"]
 
 [ext_resource type="PackedScene" uid="uid://db6ypoqkrdqdj" path="res://game/game_controller.tscn" id="1_5s501"]
 [ext_resource type="PackedScene" uid="uid://dvsyx7er8p8u8" path="res://entities/car/rigid/hull.tscn" id="2_i61ge"]
@@ -824,7 +824,7 @@ quantities = [3, 6, 6, 0, 1, 0]
 started = false
 hull = NodePath("../Hull")
 start_dialogue = "In the war some tank lost a spring near our home.
-Whaddya think? Can yo use it?
+Whaddya think? Can you use it?
 Some steep hills nearby, last I heard"
 go_dialogue = "I wanna see you jump, hehe"
 end_dialogue = "These tanks were good, ney?"
@@ -873,10 +873,12 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(-1808, -1098)
 rotation = -0.00953247
 scale = Vector2(6.667, 6.667)
+tile_map_data = PackedByteArray("AAAjAEsAAgAEAAIAAAC2ABwAAgACAAAAAAC+AAEAAgAAAAAAAAATAbz/AgAEAAAAAADoAOP/AgACAAAAAABmAan/AgAEAAIAAACWAa3/AgAJAAMAAABtAab/AgACAAQAAADaAaP/AgACAAQAAADBAa3/AgACAAAAAACuAa3/AgAAAAAAAACcAbL/AgADAAIAAAB8Abj/AgADAAIAAABaAb7/AgADAAIAAAATAdj/AgADAAIAAADzAPn/AgADAAIAAADyAPn/AgADAAIAAADyAPr/AgADAAIAAADaAA0AAgADAAIAAADZAA4AAgADAAIAAADYAA4AAgADAAIAAADFACgAAgADAAIAAACbAD8AAgADAAIAAACaAD8AAgADAAIAAAByAFUAAgADAAIAAAByAFYAAgADAAIAAABDAF4AAgADAAIAAAAhAFoAAgABAAIAAAA0AFYAAgABAAIAAABIAGQAAgABAAIAAAAuAGsAAgABAAIAAAAbAFcAAgABAAIAAAARAFQAAgABAAIAAABXAE4AAgACAAIAAABZAE4AAgACAAIAAABcAEcAAgACAAQAAAAoAEwAAgAJAAEAAAA=")
 tile_set = ExtResource("21_8iyi8")
 
 [node name="Background" type="TileMapLayer" parent="Terrain"]
 z_index = -10
 position = Vector2(-1808, -1098)
 scale = Vector2(6.667, 6.667)
+tile_map_data = PackedByteArray("AABMAEsAAgAJAAMAAACTACYAAgAJAAMAAAA=")
 tile_set = ExtResource("21_8iyi8")
