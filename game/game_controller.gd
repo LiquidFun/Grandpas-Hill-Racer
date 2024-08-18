@@ -42,10 +42,13 @@ func _ready():
 
 
 func _start():
-	Globals.play_i(1, true)
 	if started or len(placed_parts) == 0 or hull == null:
 		return
 		
+	
+	Globals.play_i(1, true)
+	
+	Audio.play("motor", 0.2)
 	
 	overlay.queue_free()
 	ingame_overlay.visible = true
@@ -317,28 +320,38 @@ func _unhandled_input(event):
 				selected_part.global_position = get_global_mouse_position()
 				_set_selected_part_color()
 				
-			if Input.is_action_just_pressed("place") and _can_selected_part_can_be_placed():
-				
-				var tween = selected_part.create_tween()
-				tween.tween_property(selected_part, "modulate", Color(1, 1, 1, 1), 0.15) \
-					.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-				placed_parts.append(selected_part)
-				var previous_rotation = selected_part.rotation
-				selected_part = null
-				quantities[selected_index] -= 1
-				if selected_index == ROCKET:
-					ingame_overlay.enable_rocket()
-				elif selected_index == MINICAR:
-					ingame_overlay.enable_mini()
-				elif selected_index == SPRING:
-					ingame_overlay.enable_spring()
+			if Input.is_action_just_pressed("place"):
+				if not _can_selected_part_can_be_placed():
+					Audio.play("wrong")
 					
-				Audio.play("place_wood")
-				
-				overlay.update_quantities(quantities, start_quantities)
-				
-				_select_part(last_selected_index)
-				selected_part.rotation = previous_rotation
+					var tween = selected_part.create_tween()
+					tween.tween_property(selected_part, "modulate", Color(1.5, 1, 1, 1), 0.15) \
+						.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+
+					tween.tween_property(selected_part, "modulate", Color(1, 1, 1, 1), 0.15) \
+						.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+					placed_parts.append(selected_part)
+				else:
+					var tween = selected_part.create_tween()
+					tween.tween_property(selected_part, "modulate", Color(1, 1, 1, 1), 0.15) \
+						.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+					placed_parts.append(selected_part)
+					var previous_rotation = selected_part.rotation
+					selected_part = null
+					quantities[selected_index] -= 1
+					if selected_index == ROCKET:
+						ingame_overlay.enable_rocket()
+					elif selected_index == MINICAR:
+						ingame_overlay.enable_mini()
+					elif selected_index == SPRING:
+						ingame_overlay.enable_spring()
+						
+					Audio.play("place_wood")
+					
+					overlay.update_quantities(quantities, start_quantities)
+					
+					_select_part(last_selected_index)
+					selected_part.rotation = previous_rotation
 				
 			if Input.is_action_just_pressed("cancel"):
 				var tween = selected_part.create_tween()

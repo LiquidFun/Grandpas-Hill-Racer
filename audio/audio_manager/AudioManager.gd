@@ -7,24 +7,17 @@ const background_music: Array = [
 	preload("res://audio/music/game-music-teste-204327.mp3")
 	]
 	
-# define an object like sound_example for each individual sound you want to play
-const sound_example: Array = [
-	# provide a single or a list of sound files
-	# # preload("<path_to_file>")
-]
-
-const button_click: Array = [
 	
-]
-
-const button_hover: Array = [
-	
-]
-
 const sounds: Dictionary = {
 	"place_wood": preload("res://audio/sfx/hit-by-a-wood-230542.mp3"),
-	
 	"place_metal": preload("res://audio/sfx/metal-beaten-sfx-230501.mp3"),
+	"motor": preload("res://audio/sfx/v12-motor-engine-218824.mp3"),
+	"game_won": preload("res://audio/sfx/sound-effect-for-games-131029.mp3"),
+	"snap": preload("res://audio/sfx/snap-sound-effect-226112.mp3"),
+	"woosh": preload("res://audio/sfx/rapid-wind-sound-effect-2-108400.mp3"),
+	"pickup": preload("res://audio/sfx/pickupCoin.wav"),
+	"echo": preload("res://audio/sfx/banished-sound-95250.mp3"),
+	"wrong": preload("res://audio/sfx/wrong-47985.mp3"),
 }
 
 var music_volume: float = 30
@@ -40,36 +33,12 @@ func _ready() -> void:
 	set_music_volume(music_volume)
 	background_player.finished.connect(_on_background_music_finished)
 	_on_background_music_finished()
-	#background_player.autoplay = true
-	#background_player.stream = background_music.pick_random()
-	#background_player.play()
 
 # SOUNDS
 
-func play(name: String):
-	_create_sound_player(sounds[name], null, false)
-
-# to play a sound call AudioManager.play_sound_example()
-func play_sound_example() -> void:
-	if sound_example.is_empty():
-		push_warning("This function should not be called since it is only an example function")
-		return
-	_create_sound_player(sound_example.pick_random(), null, false, 0.5)
-
-
-func play_button_hover() -> void:
-	if button_hover.is_empty():
-		push_warning("No button hover sound defined yet. Please fill the Array button_hover with tracks to play")
-		return
-	_create_sound_player(button_hover.pick_random(), null, false, 0.5)
-
-
-func play_button_click() -> void:
-	if button_click.is_empty():
-		push_warning("No button click sound defined yet. Please fill the Array button_click with sounds to play")
-		return
-	_create_sound_player(button_click.pick_random(), null, false, 0.5)
-
+func play(name: String, volume_multiplier=1.0):
+	_create_sound_player(sounds[name], null, false, volume_multiplier)
+	
 
 # HELPER
 func set_sound_volume(percent:float) -> void:
