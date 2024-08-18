@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vt5calkbf2u1"]
+[gd_scene load_steps=12 format=3 uid="uid://vt5calkbf2u1"]
 
 [ext_resource type="Script" path="res://ui/BuildOverlay/overlay.gd" id="1_lj18l"]
 [ext_resource type="Texture2D" uid="uid://cxjl5lu8v7d2" path="res://ui/BuildOverlay/Base.png" id="1_qji47"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b5edu0dpqwf70" path="res://ui/BuildOverlay/Rocket.png" id="6_i7bqr"]
 [ext_resource type="Texture2D" uid="uid://bw2hfpcoo4g8e" path="res://ui/BuildOverlay/Spring.png" id="7_nd4af"]
 [ext_resource type="Texture2D" uid="uid://babjqf03q5bgs" path="res://ui/BuildOverlay/Minicar.png" id="8_qcun2"]
+[ext_resource type="Texture2D" uid="uid://c0fextjnl8ivx" path="res://ui/BuildOverlay/play.png" id="11_7yucu"]
 
 [node name="Overlay" type="Control" groups=["overlay"]]
 layout_mode = 3
@@ -293,9 +294,25 @@ text = "6 "
 horizontal_alignment = 2
 vertical_alignment = 2
 
+[node name="play" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_qji47")
+texture_pressed = ExtResource("2_w4obu")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/HBoxContainer/play"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_right = 52.0
+offset_bottom = 40.0
+texture = ExtResource("11_7yucu")
+
 [connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Box" to="." method="_on_box_toggled"]
 [connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Plank" to="." method="_on_plank_toggled"]
 [connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Wheel" to="." method="_on_wheel_toggled"]
 [connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Rocket" to="." method="_on_rocket_toggled"]
 [connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Spring" to="." method="_on_spring_toggled"]
 [connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Minicar" to="." method="_on_minicar_toggled"]
+[connection signal="button_down" from="MarginContainer/CenterContainer/HBoxContainer/play" to="." method="_on_play_button_down"]

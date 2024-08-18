@@ -63,3 +63,6 @@ func _on_spring_toggled(toggled_on: bool) -> void:
 func _on_minicar_toggled(toggled_on: bool) -> void:
 	disable_others(MINICAR)
 	g_controller._select_part(MINICAR)
+
+func _on_play_button_down() -> void:
+	g_controller._start()
