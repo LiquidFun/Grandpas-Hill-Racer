@@ -1,9 +1,9 @@
-extends RigidBody2D
+extends Node2D
 
 @export var frozen = true
 
 func set_freeze(status):
-	freeze = status
+	$Minicar.freeze = status
 	$Wheel.freeze = status
 	$Wheel2.freeze = status
 	
@@ -18,11 +18,11 @@ func _unhandled_input(_event):
 		#if camera != null:
 		#	camera.reparent(self)
 		self.reparent(get_tree().get_current_scene())
-		$Camera2D.enabled = true
+		$Minicar/Camera2D.enabled = true
 		
 
 func _physics_process(delta):
-	if !freeze:
+	if !$Minicar.freeze:
 		var strength = Input.get_action_strength("left") - Input.get_action_strength("right")
 		# print(strength)
-		apply_torque(strength * 10_000_000 * delta)
+		$Minicar.apply_torque(strength * 10_000_000 * delta)

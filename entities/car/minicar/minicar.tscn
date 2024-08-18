@@ -7,57 +7,24 @@
 [ext_resource type="PackedScene" uid="uid://c6j8w7su7y05y" path="res://entities/car/rigid/wheel.tscn" id="5_5ighj"]
 [ext_resource type="Texture2D" uid="uid://bbpso5fe6g4ks" path="res://entities/car/tire/tire.png" id="6_vsegw"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8t8m0"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1j0s"]
 size = Vector2(64, 9)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8t8m0"]
-
-[node name="Minicar" type="RigidBody2D" groups=["car"]]
-z_index = 4
-scale = Vector2(0.7, 0.7)
-collision_layer = 2
-freeze = true
-freeze_mode = 1
-continuous_cd = 2
+[node name="Minicar" type="Node2D"]
 script = ExtResource("1_ih0s8")
 
-[node name="Collision" type="CollisionShape2D" parent="." groups=["car"]]
-position = Vector2(0, -4.5)
-shape = SubResource("RectangleShape2D_u1j0s")
-
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-modulate = Color(0.744991, 0, 0.327717, 1)
-z_index = -1
-position = Vector2(-14, -8)
-rotation = -2.35619
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_frrpb")
-
-[node name="Sprite2D4" type="Sprite2D" parent="."]
-modulate = Color(0.744991, 0, 0.327717, 1)
-z_index = -1
-position = Vector2(13, -8)
-rotation = -2.35619
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_frrpb")
-
-[node name="Plank2" type="Sprite2D" parent="."]
-rotation = 1.5708
-texture = ExtResource("3_wb5q0")
-
 [node name="WheelJoint" parent="." instance=ExtResource("4_4bm8b")]
-position = Vector2(-23, 6)
-node_a = NodePath("..")
+position = Vector2(-16, 4.2)
+scale = Vector2(0.7, 0.7)
+node_a = NodePath("../Minicar")
 node_b = NodePath("../Wheel")
 softness = 0.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -300)
-enabled = false
-position_smoothing_enabled = true
-
 [node name="Wheel" parent="." instance=ExtResource("5_5ighj")]
-position = Vector2(-23, 6)
+position = Vector2(-16, 4.2)
+scale = Vector2(0.7, 0.7)
 freeze = true
 freeze_mode = 1
 continuous_cd = 2
@@ -71,13 +38,15 @@ texture = ExtResource("6_vsegw")
 shape = SubResource("CircleShape2D_8t8m0")
 
 [node name="WheelJoint2" parent="." instance=ExtResource("4_4bm8b")]
-position = Vector2(24, 6)
-node_a = NodePath("..")
+position = Vector2(16.9, 4.2)
+scale = Vector2(0.7, 0.7)
+node_a = NodePath("../Minicar")
 node_b = NodePath("../Wheel2")
 softness = 0.0
 
 [node name="Wheel2" parent="." instance=ExtResource("5_5ighj")]
-position = Vector2(24, 6)
+position = Vector2(16.9, 4.2)
+scale = Vector2(0.7, 0.7)
 mass = 1.0
 freeze = true
 freeze_mode = 1
@@ -90,3 +59,42 @@ texture = ExtResource("6_vsegw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel2"]
 shape = SubResource("CircleShape2D_8t8m0")
+
+[node name="Minicar" type="RigidBody2D" parent="." groups=["car"]]
+z_index = 4
+scale = Vector2(0.7, 0.7)
+collision_layer = 2
+freeze = true
+freeze_mode = 1
+continuous_cd = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Minicar" groups=["car"]]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_u1j0s")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Minicar"]
+modulate = Color(0.744991, 0, 0.327717, 1)
+z_index = -1
+position = Vector2(-14, -8)
+rotation = -2.35619
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_frrpb")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Minicar"]
+modulate = Color(0.744991, 0, 0.327717, 1)
+z_index = -1
+position = Vector2(13, -8)
+rotation = -2.35619
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_frrpb")
+
+[node name="Plank2" type="Sprite2D" parent="Minicar"]
+rotation = 1.5708
+texture = ExtResource("3_wb5q0")
+
+[node name="Camera2D" type="Camera2D" parent="Minicar"]
+position = Vector2(0.142858, 0)
+scale = Vector2(1, 1)
+offset = Vector2(0, -300)
+enabled = false
+position_smoothing_enabled = true
