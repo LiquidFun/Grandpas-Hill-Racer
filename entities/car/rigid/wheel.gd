@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@export var power = 5_000_000
+var power = 3_000_000
 
 func _physics_process(delta):
 	if Input.is_action_pressed("forward"):

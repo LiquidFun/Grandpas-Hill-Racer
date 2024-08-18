@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c0bhd5d6gd7mw"]
 
-[ext_resource type="PackedScene" uid="uid://bfc7wo5jje38e" path="res://entities/car/rigid/car.tscn" id="1_mnxki"]
+[ext_resource type="PackedScene" uid="uid://bnnb6ewl7tj50" path="res://terrain/background/background.tscn" id="1_xi8vi"]
 [ext_resource type="PackedScene" uid="uid://bipco1samm3od" path="res://entities/car/rigid/wheel_joint.tscn" id="2_wgxnc"]
 [ext_resource type="PackedScene" uid="uid://c6j8w7su7y05y" path="res://entities/car/rigid/wheel.tscn" id="3_jkmm6"]
 [ext_resource type="Texture2D" uid="uid://bbpso5fe6g4ks" path="res://entities/car/tire/tire.png" id="4_wkvbe"]
@@ -22,91 +22,101 @@ size = Vector2(64, 61)
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="PartJoint" parent="Node2D" instance=ExtResource("6_xn7pp")]
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+
+[node name="Background" parent="Camera2D" instance=ExtResource("1_xi8vi")]
+position = Vector2(-82, 16)
+
+[node name="PartJoint" parent="." instance=ExtResource("6_xn7pp")]
 position = Vector2(-161, 2)
-node_a = NodePath("../Car")
+node_a = NodePath("../Part")
 node_b = NodePath("Part")
 
-[node name="Part" parent="Node2D/PartJoint" instance=ExtResource("7_x4cle")]
+[node name="Part" parent="PartJoint" instance=ExtResource("7_x4cle")]
 
-[node name="Sprite2D2" type="Sprite2D" parent="Node2D/PartJoint/Part"]
+[node name="Sprite2D2" type="Sprite2D" parent="PartJoint/Part"]
 position = Vector2(55, -1.99977)
 rotation = 1.5708
+scale = Vector2(2, 2)
 texture = ExtResource("8_cekfq")
 
-[node name="Collision2" type="CollisionShape2D" parent="Node2D/PartJoint/Part"]
+[node name="Collision2" type="CollisionShape2D" parent="PartJoint/Part"]
 position = Vector2(55, -1.99977)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_i4aeq")
 
-[node name="PartJoint2" parent="Node2D" instance=ExtResource("6_xn7pp")]
+[node name="PartJoint2" parent="." instance=ExtResource("6_xn7pp")]
 position = Vector2(-46, 1)
 node_a = NodePath("../PartJoint/Part")
 node_b = NodePath("Part")
 
-[node name="Part" parent="Node2D/PartJoint2" instance=ExtResource("7_x4cle")]
+[node name="Part" parent="PartJoint2" instance=ExtResource("7_x4cle")]
 
-[node name="Sprite2D2" type="Sprite2D" parent="Node2D/PartJoint2/Part"]
+[node name="Sprite2D2" type="Sprite2D" parent="PartJoint2/Part"]
 position = Vector2(55, -1.99977)
 rotation = 1.5708
+scale = Vector2(2, 2)
 texture = ExtResource("8_cekfq")
 
-[node name="Collision2" type="CollisionShape2D" parent="Node2D/PartJoint2/Part"]
+[node name="Collision2" type="CollisionShape2D" parent="PartJoint2/Part"]
 position = Vector2(55, -1.99977)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_i4aeq")
 
-[node name="WheelSpring" parent="Node2D" instance=ExtResource("2_wgxnc")]
+[node name="WheelSpring" parent="." instance=ExtResource("2_wgxnc")]
 position = Vector2(-216, 14)
-node_a = NodePath("../Car")
+node_a = NodePath("../Part")
 node_b = NodePath("Wheel")
 bias = 0.038
 
-[node name="Wheel" parent="Node2D/WheelSpring" instance=ExtResource("3_jkmm6")]
+[node name="Wheel" parent="WheelSpring" instance=ExtResource("3_jkmm6")]
 
-[node name="Collision" type="CollisionShape2D" parent="Node2D/WheelSpring/Wheel"]
+[node name="Collision" type="CollisionShape2D" parent="WheelSpring/Wheel"]
 shape = SubResource("CircleShape2D_fy5xn")
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/WheelSpring/Wheel"]
+[node name="Sprite2D" type="Sprite2D" parent="WheelSpring/Wheel"]
 z_index = 10
+scale = Vector2(2, 2)
 texture = ExtResource("4_wkvbe")
 
-[node name="WheelSpring2" parent="Node2D" instance=ExtResource("2_wgxnc")]
+[node name="WheelSpring2" parent="." instance=ExtResource("2_wgxnc")]
 position = Vector2(-70, 17)
 node_a = NodePath("../PartJoint/Part")
 node_b = NodePath("Wheel")
 bias = 0.047
 
-[node name="Wheel" parent="Node2D/WheelSpring2" instance=ExtResource("3_jkmm6")]
+[node name="Wheel" parent="WheelSpring2" instance=ExtResource("3_jkmm6")]
 
-[node name="Collision" type="CollisionShape2D" parent="Node2D/WheelSpring2/Wheel"]
+[node name="Collision" type="CollisionShape2D" parent="WheelSpring2/Wheel"]
 shape = SubResource("CircleShape2D_fy5xn")
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/WheelSpring2/Wheel"]
+[node name="Sprite2D" type="Sprite2D" parent="WheelSpring2/Wheel"]
 z_index = 10
+scale = Vector2(2, 2)
 texture = ExtResource("4_wkvbe")
 
-[node name="WheelSpring4" parent="Node2D" instance=ExtResource("2_wgxnc")]
+[node name="WheelSpring4" parent="." instance=ExtResource("2_wgxnc")]
 position = Vector2(68, 14)
 node_a = NodePath("../PartJoint2/Part")
 node_b = NodePath("Wheel")
 bias = 0.047
 
-[node name="Wheel" parent="Node2D/WheelSpring4" instance=ExtResource("3_jkmm6")]
+[node name="Wheel" parent="WheelSpring4" instance=ExtResource("3_jkmm6")]
 
-[node name="Collision" type="CollisionShape2D" parent="Node2D/WheelSpring4/Wheel"]
+[node name="Collision" type="CollisionShape2D" parent="WheelSpring4/Wheel"]
 shape = SubResource("CircleShape2D_fy5xn")
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/WheelSpring4/Wheel"]
+[node name="Sprite2D" type="Sprite2D" parent="WheelSpring4/Wheel"]
 z_index = 10
+scale = Vector2(2, 2)
 texture = ExtResource("4_wkvbe")
 
-[node name="Car" parent="Node2D" instance=ExtResource("1_mnxki")]
+[node name="Part" parent="." instance=ExtResource("7_x4cle")]
 
-[node name="Sprite2D3" type="Sprite2D" parent="Node2D/Car"]
-position = Vector2(-184, -11)
+[node name="Sprite2D3" type="Sprite2D" parent="Part"]
+position = Vector2(-188, -15)
 texture = ExtResource("5_5q575")
 
-[node name="Collision3" type="CollisionShape2D" parent="Node2D/Car" groups=["car"]]
-position = Vector2(-184, -11)
+[node name="Collision3" type="CollisionShape2D" parent="Part" groups=["car"]]
+position = Vector2(-188, -15)
 shape = SubResource("RectangleShape2D_u1j0s")

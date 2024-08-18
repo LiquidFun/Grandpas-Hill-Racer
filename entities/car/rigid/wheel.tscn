@@ -5,7 +5,6 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7rxev"]
 friction = 5.0
 rough = true
-bounce = 0.2
 
 [node name="Wheel" type="RigidBody2D" groups=["wheel"]]
 collision_layer = 4
