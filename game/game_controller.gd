@@ -19,8 +19,8 @@ const PART_JOINT_SCENE = preload("res://entities/car/rigid/part_joint.tscn")
 const PART_SCENE = preload("res://entities/car/rigid/part.tscn")
 
 var overlay
-var quantities = [4, 10, 4, 1, 1, 1]
-var start_quantities = [4, 10, 4, 1, 1, 1]
+@export var quantities = [4, 10, 4, 1, 1, 1]
+@onready var start_quantities = quantities.duplicate()
 const ROTATE_BY = deg_to_rad(45/4.0)
 
 var last_selected_index = -1
