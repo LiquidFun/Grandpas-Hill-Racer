@@ -19,6 +19,7 @@ const PART_JOINT_SCENE = preload("res://entities/car/rigid/part_joint.tscn")
 const PART_SCENE = preload("res://entities/car/rigid/part.tscn")
 
 var overlay
+var ingame_overlay
 @export var quantities = [4, 10, 4, 1, 1, 1]
 @onready var start_quantities = quantities.duplicate()
 const ROTATE_BY = deg_to_rad(45/4.0)
@@ -34,6 +35,8 @@ var placed_parts = []
  
 func _ready():
 	overlay = get_tree().get_first_node_in_group("overlay")
+	ingame_overlay = get_tree().get_first_node_in_group("ingame_overlay")
+	ingame_overlay.visible = false
 
 func _start():
 	if started or len(placed_parts) == 0 or hull == null:
@@ -41,6 +44,7 @@ func _start():
 		
 	
 	overlay.queue_free()
+	ingame_overlay.visible = true
 	started = true
 	
 	var car = hull.get_node("Car")
@@ -317,6 +321,13 @@ func _unhandled_input(event):
 				var previous_rotation = selected_part.rotation
 				selected_part = null
 				quantities[selected_index] -= 1
+				if selected_index == ROCKET:
+					ingame_overlay.enable_rocket()
+				elif selected_index == MINICAR:
+					ingame_overlay.enable_mini()
+				elif selected_index == SPRING:
+					ingame_overlay.enable_spring()
+				
 				overlay.update_quantities(quantities, start_quantities)
 				
 				_select_part(last_selected_index)

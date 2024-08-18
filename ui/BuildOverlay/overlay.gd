@@ -21,6 +21,7 @@ enum {BOX, PLANK, WHEEL, ROCKET, SPRING, MINICAR}
 ]
 
 var g_controller
+var first = true
 
 func update_quantities(quantities, start_quantities):
 	for i in range(len(quantitylabels)):
@@ -28,10 +29,7 @@ func update_quantities(quantities, start_quantities):
 
 func _ready():
 	g_controller = get_tree().get_first_node_in_group("game_controller")
-	update_quantities(g_controller.quantities, g_controller.start_quantities)
-
-func _process(delta: float) -> void:
-	pass
+	update_quantities.call_deferred(g_controller.quantities, g_controller.start_quantities)
 
 func press(ind: int):
 	buttons[ind].set_pressed_no_signal(true)
