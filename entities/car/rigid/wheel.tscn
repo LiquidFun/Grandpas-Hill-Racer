@@ -6,7 +6,7 @@
 friction = 8.0
 rough = true
 
-[node name="Wheel" type="RigidBody2D" groups=["wheel"]]
+[node name="Wheel" type="RigidBody2D" groups=["part", "wheel"]]
 collision_layer = 4
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_7rxev")
