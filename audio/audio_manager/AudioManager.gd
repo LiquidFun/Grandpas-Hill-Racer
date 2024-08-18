@@ -4,6 +4,7 @@ const background_music: Array = [
 	# input list of background music files goes here
 	# background music is randomly shuffled
 	# preload("<path_to_file>")
+	preload("res://audio/music/game-music-teste-204327.mp3")
 	]
 	
 # define an object like sound_example for each individual sound you want to play
@@ -20,18 +21,33 @@ const button_hover: Array = [
 	
 ]
 
-var music_volume: float = 3
-var sound_volume: float = 3
+const sounds: Dictionary = {
+	"place_wood": preload("res://audio/sfx/hit-by-a-wood-230542.mp3"),
+	
+	"place_metal": preload("res://audio/sfx/metal-beaten-sfx-230501.mp3"),
+}
 
-@onready var background_player = $BackgroundMusic
+var music_volume: float = 30
+var sound_volume: float = 10
+
+@onready var background_player = AudioStreamPlayer.new()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_on_background_music_finished()
+	await get_tree().create_timer(.1).timeout
+	get_tree().root.add_child(background_player)
 	set_music_volume(music_volume)
+	background_player.finished.connect(_on_background_music_finished)
+	_on_background_music_finished()
+	#background_player.autoplay = true
+	#background_player.stream = background_music.pick_random()
+	#background_player.play()
 
 # SOUNDS
+
+func play(name: String):
+	_create_sound_player(sounds[name], null, false)
 
 # to play a sound call AudioManager.play_sound_example()
 func play_sound_example() -> void:
