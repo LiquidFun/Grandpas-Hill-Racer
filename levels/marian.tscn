@@ -505,9 +505,8 @@ scale = Vector2(6.667, 6.667)
 tile_map_data = PackedByteArray("AACMACAAAgALAAIAAAAqACcAAgALAAIAAAAnACgAAgALAAIAAAAlACkAAgALAAIAAAChAAgAAgACAAAAAACbAAoAAgACAAAAAABYACQAAgACAAQAAABAACYAAgACAAQAAAAvACIAAgACAAQAAABNACYAAgAAAAUAAABlACcAAgAAAAUAAABzACQAAgAAAAUAAAD+/yYAAgAEAAIAAADZ/ysAAgAHAAIAAADK/ysAAgALAAIAAAC+/ykAAgALAAIAAADi/ysAAgAJAAEAAACu/xYAAgAJAAEAAACz/xkAAgAMAAIAAADE/ysAAgAMAAIAAADm/y8AAgAJAAUAAAABACQAAgADAAIAAAAYACgAAgACAAAAAAA3ACYAAgACAAAAAAA=")
 tile_set = ExtResource("15_xyrho")
 
-[node name="GameController" parent="." node_paths=PackedStringArray("car") instance=ExtResource("19_vfj7f")]
+[node name="GameController" parent="." instance=ExtResource("19_vfj7f")]
 started = false
-car = NodePath("../Car")
 
 [node name="Clouds" parent="." instance=ExtResource("17_lsu8s")]
 position = Vector2(569, -501)
