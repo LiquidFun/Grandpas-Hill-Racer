@@ -34,6 +34,7 @@ var placed_parts = []
 #@onready var camera = $Camera2D
  
 func _ready():
+	InputMap.load_from_project_settings()
 	overlay = get_tree().get_first_node_in_group("overlay")
 	ingame_overlay = get_tree().get_first_node_in_group("ingame_overlay")
 	ingame_overlay.visible = false
