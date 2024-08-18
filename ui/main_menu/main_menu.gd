@@ -15,3 +15,6 @@ func _on_credits_button_down() -> void:
 
 func _on_exit_button_down() -> void:
 	get_tree().quit()
+
+func _play_sound():
+	Audio.play("snap")

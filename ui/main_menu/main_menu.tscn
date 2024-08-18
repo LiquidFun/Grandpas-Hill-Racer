@@ -62,6 +62,10 @@ text = "Exit Game
 "
 
 [connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Start game" to="." method="_on_start_game_button_down"]
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Start game" to="." method="_play_sound"]
 [connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Options" to="." method="_on_options_button_down"]
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Options" to="." method="_play_sound"]
 [connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Credits" to="." method="_on_credits_button_down"]
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Credits" to="." method="_play_sound"]
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Exit" to="." method="_play_sound"]
 [connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Exit" to="." method="_on_exit_button_down"]
