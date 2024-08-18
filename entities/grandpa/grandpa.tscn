@@ -1,7 +1,8 @@
-[gd_scene load_steps=46 format=3 uid="uid://dnn3bcrny1kjd"]
+[gd_scene load_steps=48 format=3 uid="uid://dnn3bcrny1kjd"]
 
 [ext_resource type="Texture2D" uid="uid://dp0gb8pnbr2rv" path="res://entities/grandpa/Grandpa-Sheet.png" id="1_olit4"]
 [ext_resource type="Script" path="res://entities/grandpa/grandpa_animation.gd" id="2_lsi4l"]
+[ext_resource type="Theme" uid="uid://ct1c3bqhs7bfp" path="res://ui/theme.tres" id="3_mweiu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgkwv"]
 atlas = ExtResource("1_olit4")
@@ -310,12 +311,35 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Grandpa" type="AnimatedSprite2D"]
-z_index = 1
-position = Vector2(2115, -891)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ggs7"]
+size = Vector2(320, 163.913)
+
+[node name="Grandpa" type="AnimatedSprite2D" groups=["grandpa"]]
+z_index = 20
+position = Vector2(404, 416)
 scale = Vector2(4.6, 4.6)
 sprite_frames = SubResource("SpriteFrames_1pp4v")
-animation = &"Jump"
-frame_progress = 0.904904
+animation = &"Idle"
 speed_scale = 2.0
 script = ExtResource("2_lsi4l")
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.2, 0.2)
+
+[node name="Label" type="Label" parent="Node2D"]
+z_index = 20
+custom_minimum_size = Vector2(400, 0)
+offset_left = 48.913
+offset_top = 3.26088
+offset_right = 448.914
+offset_bottom = 152.261
+theme = ExtResource("3_mweiu")
+theme_override_font_sizes/font_size = 36
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4ggs7")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
