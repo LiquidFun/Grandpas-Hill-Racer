@@ -10,7 +10,7 @@ func set_freeze(status):
 func _ready():
 	set_freeze(frozen)
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("minicar"):
 		set_freeze(false)
 		var camera = get_tree().get_first_node_in_group("camera")

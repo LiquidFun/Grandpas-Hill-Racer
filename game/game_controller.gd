@@ -154,7 +154,7 @@ func _start():
 			child.freeze = false
 	car.get_node("Collision").disabled = false
 		
-func getArray(shape: Shape2D, pos: Vector2, transf: Transform2D) -> PackedVector2Array:
+func getArray(shape: Shape2D, _pos: Vector2, transf: Transform2D) -> PackedVector2Array:
 	var vertices: PackedVector2Array = PackedVector2Array()
 	if shape is CircleShape2D:
 		var circle_radius = shape.radius
