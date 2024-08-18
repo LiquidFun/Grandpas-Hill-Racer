@@ -71,13 +71,15 @@ func _start():
 	var now_placed = [car]
 	#hull.add_child(car)
 	for placed in placed_parts:
-		get_parent().remove_child(placed)
+		if placed == null or not is_instance_valid(placed):
+			continue
 		#part.get_node("Placement").queue_free()
-		var sprite = placed.get_node("Sprite2D")
 		#placed.remove_child(sprite)
-		placed.get_node("Collision").disabled = false
 		
-		var collision = placed.get_node("Collision")
+
+		
+		
+		# get_parent().remove_child(placed)
 		#placed.remove_child(collision)
 		
 		
@@ -96,17 +98,22 @@ func _start():
 		#else:
 		var is_tire = placed.is_in_group("tire") 
 		var part = (WHEEL_SCENE if is_tire else PART_SCENE).instantiate()
-		sprite.owner = null
-		collision.owner = null
-		sprite.reparent(part)
-		collision.reparent(part)
+		
+		var sprite = placed.get_node("Sprite2D")
+		if sprite != null:
+			sprite.owner = null
+			sprite.reparent(part)
+			sprite.global_rotation = placed.global_rotation
+			sprite.position = Vector2.ZERO
+		
+		var collision = placed.get_node("Collision")
+		if collision != null:
+			collision.disabled = false
+			collision.owner = null
+			collision.reparent(part)
+			collision.global_rotation = placed.global_rotation
 
-		collision.global_rotation = placed.global_rotation
-		sprite.global_rotation = placed.global_rotation
-		#part.add_child(sprite)
-		#part.add_child(collision)
-		sprite.position = Vector2.ZERO
-		collision.position = Vector2.ZERO
+			collision.position = Vector2.ZERO
 		
 		var joint = (WHEEL_JOINT_SCENE if is_tire else PART_JOINT_SCENE).instantiate()
 		
@@ -164,6 +171,8 @@ func _start():
 		part.global_position = placed.global_position
 
 		joint.node_b = part.get_path()
+		
+		placed.queue_free.call_deferred()
 		
 	for child in hull.get_children():
 		if child.has_method("calibrate"):
@@ -329,7 +338,7 @@ func _unhandled_input(event):
 
 					tween.tween_property(selected_part, "modulate", Color(1, 1, 1, 1), 0.15) \
 						.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-					placed_parts.append(selected_part)
+						
 				else:
 					var tween = selected_part.create_tween()
 					tween.tween_property(selected_part, "modulate", Color(1, 1, 1, 1), 0.15) \
