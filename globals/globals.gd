@@ -5,6 +5,7 @@ var level_scenes = [
 	"res://ui/main_menu/main_menu.tscn",
 	#"res://levels/marian.tscn", 
 	#"res://levels/brutus.tscn",
+	"res://levels/empty.tscn",
 	"res://levels/level_01.tscn",
 	"res://levels/level_02.tscn",
 	"res://levels/level_03.tscn",
@@ -19,7 +20,7 @@ var level_scenes = [
 
 var current_level_id = 0
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("esc"):
 		Globals.load_main_menu()
 
@@ -28,10 +29,10 @@ func play_i(i, is_start):
 		pa.play_i(i, is_start)
 
 func set_sfx_volume(value: int) -> void:
-	print("Setting sfx volume to " + str(value))
+	Audio.set_sound_volume(value)
 	
 func set_music_volume(value: int) -> void:
-	print("Setting music volume to " + str(value))
+	Audio.set_music_volume(value)
 
 func reload_level() -> void:
 	get_tree().reload_current_scene()

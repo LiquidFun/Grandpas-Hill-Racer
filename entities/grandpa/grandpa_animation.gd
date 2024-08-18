@@ -16,7 +16,7 @@ var dialogue = [
 func _ready() -> void:
 	self.play(anim)
 	if anim == "Jump":
-		self.position.y += 20
+		self.position.y += scale.y * 3
 	print(anim)
 	flip_h = flip
 	if flip:
@@ -26,9 +26,6 @@ func play_i(i, start):
 	if is_start == start:
 		play_text(dialogue[i])
 
-func _process(delta: float) -> void:
-	pass
-	
 func play_text(text: String):
 	if label == null:
 		await get_tree().create_timer(1).timeout

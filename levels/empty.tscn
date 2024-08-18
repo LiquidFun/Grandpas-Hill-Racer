@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://ducvts2je2m5b"]
+
+[ext_resource type="PackedScene" uid="uid://db6ypoqkrdqdj" path="res://game/game_controller.tscn" id="1_xkw2p"]
+[ext_resource type="PackedScene" uid="uid://dvsyx7er8p8u8" path="res://entities/car/rigid/hull.tscn" id="2_geno4"]
+[ext_resource type="PackedScene" uid="uid://vt5calkbf2u1" path="res://ui/BuildOverlay/overlay.tscn" id="3_j84sl"]
+[ext_resource type="PackedScene" uid="uid://c6ltvdgctnf24" path="res://ui/drive_overlay/drive_overlay.tscn" id="4_hxmu4"]
+[ext_resource type="PackedScene" uid="uid://dnn3bcrny1kjd" path="res://entities/grandpa/grandpa.tscn" id="5_gum6v"]
+[ext_resource type="PackedScene" uid="uid://qc11ywdk5g01" path="res://entities/coin/coin.tscn" id="6_61ig6"]
+[ext_resource type="TileSet" uid="uid://bue7trwhw6f4u" path="res://terrain/props/props.tres" id="21_m72p3"]
+
+[node name="brutus3" type="Node2D"]
+
+[node name="GameController" parent="." node_paths=PackedStringArray("hull") instance=ExtResource("1_xkw2p")]
+quantities = [2, 5, 5, 0, 0, 0]
+started = false
+hull = NodePath("../Hull")
+
+[node name="Hull" parent="." instance=ExtResource("2_geno4")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Overlay" parent="CanvasLayer" instance=ExtResource("3_j84sl")]
+metadata/_edit_use_anchors_ = true
+
+[node name="IngameOverlay" parent="CanvasLayer" instance=ExtResource("4_hxmu4")]
+metadata/_edit_use_anchors_ = true
+
+[node name="GrandpaStart" parent="." instance=ExtResource("5_gum6v")]
+position = Vector2(402, 239)
+
+[node name="GrandpaEnd" parent="." instance=ExtResource("5_gum6v")]
+position = Vector2(-747, 237)
+flip = true
+is_start = false
+
+[node name="End" parent="." instance=ExtResource("6_61ig6")]
+position = Vector2(-780, 84)
+
+[node name="Terrain" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="ForeGround" type="TileMapLayer" parent="Terrain"]
+position = Vector2(-1808, -1098)
+rotation = -0.00953247
+scale = Vector2(6.667, 6.667)
+tile_set = ExtResource("21_m72p3")
+
+[node name="Background" type="TileMapLayer" parent="Terrain"]
+z_index = -10
+position = Vector2(-1808, -1098)
+scale = Vector2(6.667, 6.667)
+tile_set = ExtResource("21_m72p3")

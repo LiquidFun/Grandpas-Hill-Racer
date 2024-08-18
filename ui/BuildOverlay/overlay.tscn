@@ -309,6 +309,18 @@ offset_right = 52.0
 offset_bottom = 40.0
 texture = ExtResource("11_7yucu")
 
+[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/play"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+mouse_filter = 1
+theme = ExtResource("5_q6f1s")
+theme_override_font_sizes/font_size = 48
+text = "F "
+horizontal_alignment = 2
+vertical_alignment = 2
+
 [connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Box" to="." method="_on_box_toggled"]
 [connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Plank" to="." method="_on_plank_toggled"]
 [connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/Wheel" to="." method="_on_wheel_toggled"]

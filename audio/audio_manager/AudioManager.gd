@@ -5,7 +5,7 @@ const background_music: Array = [
 	# background music is randomly shuffled
 	# preload("<path_to_file>")
 	preload("res://audio/music/game-music-teste-204327.mp3")
-	]
+]
 	
 	
 const sounds: Dictionary = {
@@ -20,8 +20,8 @@ const sounds: Dictionary = {
 	"wrong": preload("res://audio/sfx/wrong-47985.mp3"),
 }
 
-var music_volume: float = 50
-var sound_volume: float = 20
+var music_volume: float = 70
+var sound_volume: float = 50
 
 @onready var background_player = AudioStreamPlayer.new()
 
@@ -36,8 +36,8 @@ func _ready() -> void:
 
 # SOUNDS
 
-func play(name: String, volume_multiplier=1.0):
-	_create_sound_player(sounds[name], null, false, volume_multiplier)
+func play(name_: String, volume_multiplier=1.0):
+	_create_sound_player(sounds[name_], null, false, volume_multiplier)
 	
 
 # HELPER

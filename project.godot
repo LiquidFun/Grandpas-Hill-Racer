@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="GMTK2024"
+config/name="Grandpa's Hill Racer"
+config/version="0.1.0"
 run/main_scene="res://ui/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -25,7 +26,7 @@ Audio="*res://audio/audio_manager/AudioManager.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_width"
+window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
@@ -173,6 +174,7 @@ esc={
 
 [physics]
 
+2d/run_on_separate_thread=true
 2d/physics_engine="Rapier2D"
 
 [rendering]
@@ -180,3 +182,4 @@ esc={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
