@@ -31,7 +31,7 @@ collision_mask = 2
 [node name="Placement" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_nyp6j")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 
 [node name="Background" parent="Camera2D" instance=ExtResource("3_x14sg")]
 position = Vector2(-82, 16)
