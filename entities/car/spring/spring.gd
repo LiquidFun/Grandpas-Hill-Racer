@@ -6,7 +6,7 @@ var retracted = true
 
 var angle = null
 
-@export var power = 200_000
+@export var power = 300_000
 
 func spring():
 	var tween = create_tween()
