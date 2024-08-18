@@ -35,6 +35,8 @@ enabled=PackedStringArray("res://addons/rmsmartshape/plugin.cfg")
 car="whether the part can be part of a car"
 tire=""
 wheel=""
+game_controller=""
+overlay=""
 
 [input]
 
@@ -155,10 +157,6 @@ minicar={
 2d_physics/layer_1="terrain"
 2d_physics/layer_2="car"
 2d_physics/layer_3="wheels"
-
-[physics]
-
-2d/physics_engine="Rapier2D"
 
 [rendering]
 

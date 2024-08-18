@@ -1,5 +1,8 @@
 extends Node2D
 
+enum {BOX, PLANK, WHEEL, ROCKET, SPRING, MINICAR}
+
+
 const PART_SCENES = [
 	preload("res://entities/car/cube/cube.tscn"),
 	preload("res://entities/car/plank/plank.tscn"),
@@ -15,19 +18,25 @@ const WHEEL_JOINT_SCENE = preload("res://entities/car/rigid/wheel_joint.tscn")
 const PART_JOINT_SCENE = preload("res://entities/car/rigid/part_joint.tscn")
 const PART_SCENE = preload("res://entities/car/rigid/part.tscn")
 
-
-		
+var overlay
+var quantities = [4, 10, 4, 1, 1, 1]
+var start_quantities = [4, 10, 4, 1, 1, 1]
 const ROTATE_BY = deg_to_rad(45/4.0)
 
 var last_selected_index = -1
 var selected_part: Area2D = null
+var selected_index = -1
 var placed_parts = []
 @export var started = false
 @export var car: Node
 
 #@onready var camera = $Camera2D
  
+func _ready():
+	overlay = get_tree().get_first_node_in_group("overlay")
+
 func _start():
+	overlay.queue_free()
 	if started or len(placed_parts) == 0:
 		return
 	started = true
@@ -143,7 +152,7 @@ func _find_intersection_point(body1: CollisionObject2D, body2: CollisionObject2D
 	var shape1 = body1.get_node("Collision").shape
 	var shape2 = body2.get_node("Collision").shape
 	
-	var a1 = getArray(shape1, body1.get_node("Collision").global_position, body1.get_node("Collision").global_transform)
+	"""var a1 = getArray(shape1, body1.get_node("Collision").global_position, body1.get_node("Collision").global_transform)
 	var a2= getArray(shape2, body2.get_node("Collision").global_position, body2.get_node("Collision").global_transform)
 	
 	var diff = Geometry2D.intersect_polygons(a1, a2)
@@ -168,7 +177,7 @@ func _find_intersection_point(body1: CollisionObject2D, body2: CollisionObject2D
 	assert(Geometry2D.is_point_in_polygon(mid, a1))
 	assert(Geometry2D.is_point_in_polygon(mid, a2))
 	
-	return mid
+	return mid"""
 	
 	var a = shape1.collide_and_get_contacts(body1.get_node("Collision").global_transform, shape2, body2.get_node("Collision").global_transform)
 	# assert(Geometry2D.is_point_in_polygon(a[0], a1))
@@ -251,6 +260,9 @@ func _unhandled_input(event):
 				placed_parts.append(selected_part)
 				var previous_rotation = selected_part.rotation
 				selected_part = null
+				quantities[selected_index] -= 1
+				overlay.update_quantities(quantities, start_quantities)
+				
 				_select_part(last_selected_index)
 				selected_part.rotation = previous_rotation
 				
@@ -271,7 +283,10 @@ func _unhandled_input(event):
 func _can_selected_part_can_be_placed() -> bool:
 	if selected_part == null:
 		return false
-		
+	
+	if quantities[selected_index] <= 0:
+		return false
+	
 	for area in selected_part.get_overlapping_areas():
 		if area.is_in_group("car"):
 			return true
@@ -280,8 +295,10 @@ func _can_selected_part_can_be_placed() -> bool:
 func _select_part(index: int):
 	if index >= len(PART_SCENES):
 		return
-		
-	last_selected_index = index
+	
+	selected_index = index
+	last_selected_index = index#
+	overlay.press(index)
 		
 	if selected_part != null:
 		get_parent().remove_child(selected_part)
