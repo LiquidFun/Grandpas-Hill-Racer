@@ -1,8 +1,9 @@
-[gd_scene load_steps=48 format=3 uid="uid://dnn3bcrny1kjd"]
+[gd_scene load_steps=49 format=3 uid="uid://dnn3bcrny1kjd"]
 
 [ext_resource type="Texture2D" uid="uid://dp0gb8pnbr2rv" path="res://entities/grandpa/Grandpa-Sheet.png" id="1_olit4"]
 [ext_resource type="Script" path="res://entities/grandpa/grandpa_animation.gd" id="2_lsi4l"]
 [ext_resource type="Theme" uid="uid://ct1c3bqhs7bfp" path="res://ui/theme.tres" id="3_mweiu"]
+[ext_resource type="Texture2D" uid="uid://b2rg2vp853k6t" path="res://terrain/placeholder.png" id="4_5v43m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgkwv"]
 atlas = ExtResource("1_olit4")
@@ -337,9 +338,16 @@ theme = ExtResource("3_mweiu")
 theme_override_font_sizes/font_size = 36
 metadata/_edit_use_anchors_ = true
 
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.364706, 0.364706, 0.364706, 0.498039)
+position = Vector2(318.554, 97.3587)
+scale = Vector2(17.5904, 7.63791)
+texture = ExtResource("4_5v43m")
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("RectangleShape2D_4ggs7")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

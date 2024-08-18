@@ -41,11 +41,10 @@ func _ready():
 	Globals.play_i(0, true)
 
 func _start():
-	Globals.play_i(1, true)
 	if started or len(placed_parts) == 0 or hull == null:
 		return
 		
-	
+	Globals.play_i(1, true)
 	overlay.queue_free()
 	ingame_overlay.visible = true
 	started = true
@@ -281,6 +280,7 @@ func _point_in_body(point: Vector2, body: RigidBody2D):
 	return false
 
 func _unhandled_input(event):
+	
 	if Input.is_action_just_pressed("start"):
 		_start()
 		

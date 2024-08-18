@@ -37,3 +37,6 @@ func _on_minicar_button_down() -> void:
 
 func _on_minicar_button_up() -> void:
 	throw_input_event("minicar", false)
+
+func _on_replay_button_down() -> void:
+	Globals.reload_level()

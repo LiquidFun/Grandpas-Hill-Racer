@@ -9,6 +9,10 @@ var level_scenes = [
 
 var current_level_id = 0
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("esc"):
+		Globals.load_main_menu()
+
 func play_i(i, is_start):
 	for pa in get_tree().get_nodes_in_group("grandpa"):
 		pa.play_i(i, is_start)
