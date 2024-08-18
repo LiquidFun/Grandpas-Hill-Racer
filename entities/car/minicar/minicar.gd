@@ -14,7 +14,9 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("minicar"):
 		set_freeze(false)
 		var camera = get_tree().get_first_node_in_group("camera")
-		if camera != null:
-			camera.reparent(self)
+		camera.enabled = false
+		#if camera != null:
+		#	camera.reparent(self)
 		self.reparent(get_tree().get_current_scene())
+		$Camera2D.enabled = true
 		

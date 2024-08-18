@@ -248,8 +248,10 @@ func _unhandled_input(event):
 			if Input.is_action_just_pressed("place") and _can_selected_part_can_be_placed():
 				selected_part.modulate = Color(1, 1, 1, 1)
 				placed_parts.append(selected_part)
+				var previous_rotation = selected_part.rotation
 				selected_part = null
 				_select_part(last_selected_index)
+				selected_part.rotation = previous_rotation
 				
 			if Input.is_action_just_pressed("cancel"):
 				get_parent().remove_child(selected_part)
