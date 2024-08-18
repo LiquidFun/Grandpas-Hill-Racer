@@ -298,7 +298,10 @@ func _unhandled_input(event):
 				_set_selected_part_color()
 				
 			if Input.is_action_just_pressed("place") and _can_selected_part_can_be_placed():
-				selected_part.modulate = Color(1, 1, 1, 1)
+				
+				var tween = selected_part.create_tween()
+				tween.tween_property(selected_part, "modulate", Color(1, 1, 1, 1), 0.15) \
+					.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 				placed_parts.append(selected_part)
 				var previous_rotation = selected_part.rotation
 				selected_part = null
@@ -306,13 +309,15 @@ func _unhandled_input(event):
 				selected_part.rotation = previous_rotation
 				
 			if Input.is_action_just_pressed("cancel"):
-				get_parent().remove_child(selected_part)
+				var tween = selected_part.create_tween()
+				tween.tween_property(selected_part, "scale", Vector2.ZERO, 0.06) \
+					.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+				tween.tween_callback(selected_part.queue_free)
 				selected_part = null
 				
 			if Input.is_action_just_pressed("rotate_left"):
 				selected_part.rotate(ROTATE_BY)
 				_set_selected_part_color()
-
 				
 			if Input.is_action_just_pressed("rotate_right"):
 				selected_part.rotate(-ROTATE_BY)
@@ -340,6 +345,11 @@ func _select_part(index: int):
 	selected_part = PART_SCENES[index].instantiate()
 	add_sibling(selected_part)
 	selected_part.global_position = get_global_mouse_position()
+	var initial_scale = selected_part.scale
+	selected_part.scale = Vector2.ONE * 0.01
+	var tween = selected_part.create_tween()
+	tween.tween_property(selected_part, "scale", initial_scale, 0.5) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 
 	_set_selected_part_color()
 
@@ -351,7 +361,8 @@ func _set_selected_part_color():
 	await get_tree().physics_frame
 	
 	if selected_part != null:
-		if _can_selected_part_can_be_placed():
-			selected_part.modulate = Color(0.5, 1, 0, 0.75)
-		else:
-			selected_part.modulate = Color(1, 0.5, 0.5, 0.75)
+		var color = Color(0.7, 1, 0.7, 0.75) if _can_selected_part_can_be_placed() else Color(1, 0.5, 0.5, 0.75)
+		#selected_part.modulate = color
+		var tween = selected_part.create_tween()
+		tween.tween_property(selected_part, "modulate", color, 0.1) \
+			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
