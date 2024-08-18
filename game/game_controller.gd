@@ -301,7 +301,8 @@ func _unhandled_input(event):
 		
 		if Input.is_action_pressed("pan"):
 			if event is InputEventMouseMotion:
-				hull.get_node("Car").get_node("Camera2D").position -= event.screen_relative
+				if hull.has_node("Car") and hull.get_node("Car").has_node("Camera2D"):
+					hull.get_node("Car").get_node("Camera2D").position -= event.screen_relative
 				
 		if placed_parts:
 			if Input.is_action_just_pressed("undo"):

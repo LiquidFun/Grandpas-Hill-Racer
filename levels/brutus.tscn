@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://byg4o67v5makp"]
+[gd_scene load_steps=86 format=3 uid="uid://byg4o67v5makp"]
 
 [ext_resource type="PackedScene" uid="uid://db6ypoqkrdqdj" path="res://game/game_controller.tscn" id="1_onm43"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_closed.gd" id="2_82ttm"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="15_rmb00"]
 [ext_resource type="PackedScene" uid="uid://dvsyx7er8p8u8" path="res://entities/car/rigid/hull.tscn" id="16_0wupx"]
 [ext_resource type="PackedScene" uid="uid://vt5calkbf2u1" path="res://ui/BuildOverlay/overlay.tscn" id="17_2oeth"]
+[ext_resource type="PackedScene" uid="uid://c6ltvdgctnf24" path="res://ui/drive_overlay/drive_overlay.tscn" id="18_dcdku"]
 
 [sub_resource type="Resource" id="Resource_shly2"]
 script = ExtResource("3_dao2n")
@@ -547,3 +548,5 @@ polygon = PackedVector2Array(-1215.74, 870.778, -862.772, 656.936, -603.381, 452
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Overlay" parent="CanvasLayer" instance=ExtResource("17_2oeth")]
+
+[node name="IngameOverlay" parent="CanvasLayer" instance=ExtResource("18_dcdku")]
