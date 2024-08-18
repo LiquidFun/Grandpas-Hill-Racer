@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx1d5an82dwvx"]
+
+[ext_resource type="Script" path="res://audio/audio_manager/AudioManager.gd" id="1_w6s5a"]
+
+[node name="AudioManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_w6s5a")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="finished" from="BackgroundMusic" to="." method="_on_background_music_finished"]
