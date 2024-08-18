@@ -31,6 +31,10 @@ var placed_parts = []
 @export var started = false
 @export var hull: Node
 
+@export_multiline var start_dialogue = ""
+@export_multiline var go_dialogue = ""
+@export_multiline var end_dialogue = ""
+
 #@onready var camera = $Camera2D
  
 func _ready():
@@ -38,6 +42,19 @@ func _ready():
 	overlay = get_tree().get_first_node_in_group("overlay")
 	ingame_overlay = get_tree().get_first_node_in_group("ingame_overlay")
 	ingame_overlay.visible = false
+	
+	if start_dialogue:
+		for grandpa in get_tree().get_nodes_in_group("grandpa"):
+			grandpa.dialogue[0] = start_dialogue
+			
+	if go_dialogue:
+		for grandpa in get_tree().get_nodes_in_group("grandpa"):
+			grandpa.dialogue[1] = go_dialogue
+			
+	if end_dialogue:
+		for grandpa in get_tree().get_nodes_in_group("grandpa"):
+			grandpa.dialogue[2] = end_dialogue
+			
 	Globals.play_i(0, true)
 
 
@@ -73,29 +90,7 @@ func _start():
 	for placed in placed_parts:
 		if placed == null or not is_instance_valid(placed):
 			continue
-		#part.get_node("Placement").queue_free()
-		#placed.remove_child(sprite)
-		
 
-		
-		
-		# get_parent().remove_child(placed)
-		#placed.remove_child(collision)
-		
-		
-		#if placed.has_node("Fun23ction"):
-		#	var function = placed.get_node("Function")
-		#	placed.remove_child(collision)
-		
-		
-		#if index == 0:
-		#	car.add_child(sprite)
-		#	car.add_child(collision)
-		#	sprite.global_position = placed.global_position
-		#	collision.global_position = placed.global_position
-		#	now_placed.append(car)
-
-		#else:
 		var is_tire = placed.is_in_group("tire") 
 		var part = (WHEEL_SCENE if is_tire else PART_SCENE).instantiate()
 		
@@ -112,23 +107,16 @@ func _start():
 			collision.owner = null
 			collision.reparent(part)
 			collision.global_rotation = placed.global_rotation
-
 			collision.position = Vector2.ZERO
 		
 		var joint = (WHEEL_JOINT_SCENE if is_tire else PART_JOINT_SCENE).instantiate()
-		
-		
-		# part.get_colliding_bodies()
+
 		
 		hull.add_child(joint)
 		hull.add_child(part)
 		
 		part.global_position = placed.global_position
 		
-		#await get_tree().physics_frame
-		#await get_tree().physics_frame
-		#await get_tree().physics_frame
-		#2continue
 		joint.node_a = car.get_path()
 		
 		var found = false
@@ -139,8 +127,8 @@ func _start():
 				joint.global_position = vec
 				found = true
 				joint.node_a = previous_part.get_path()
-				
 				break
+				
 		if not found:
 			for previous_part in now_placed:
 				var vec = _find_intersection_point_via_contacts(previous_part, part)

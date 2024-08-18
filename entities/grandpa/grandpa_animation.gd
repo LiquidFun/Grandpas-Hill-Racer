@@ -30,7 +30,7 @@ func play_text(text: String):
 		await get_tree().create_timer(1).timeout
 	
 	if text == dialogue[2]:
-		play("jump")
+		play("Jump")
 	label.text = ""
 	for c in text:
 		label.text += c
