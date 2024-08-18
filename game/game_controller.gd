@@ -36,9 +36,11 @@ func _ready():
 	overlay = get_tree().get_first_node_in_group("overlay")
 
 func _start():
-	overlay.queue_free()
 	if started or len(placed_parts) == 0 or hull == null:
 		return
+		
+	
+	overlay.queue_free()
 	started = true
 	
 	var car = hull.get_node("Car")
@@ -272,10 +274,10 @@ func _point_in_body(point: Vector2, body: RigidBody2D):
 	return false
 
 func _unhandled_input(event):
-	if Input.is_action_pressed("start"):
+	if Input.is_action_just_pressed("start"):
 		_start()
 		
-	if Input.is_action_pressed("restart"):
+	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
 			
 	if not started:
