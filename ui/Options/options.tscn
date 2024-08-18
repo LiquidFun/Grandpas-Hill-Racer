@@ -25,7 +25,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("3_nx8x7")
 theme_override_constants/margin_left = 1575
-theme_override_constants/margin_top = 500
+theme_override_constants/margin_top = 400
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
@@ -65,11 +65,33 @@ layout_mode = 2
 theme = ExtResource("3_nx8x7")
 value = 50.0
 
-[node name="Exit" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="AD" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(158.37, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+button_pressed = true
+text = "Use AD for
+Movement"
+
+[node name="WS" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(158.37, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+text = "Use WS for
+Movement"
+
+[node name="Exit2" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "Back
 "
 
 [connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Music" to="." method="_on_music_value_changed"]
 [connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/SFX" to="." method="_on_sfx_value_changed"]
-[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Exit" to="." method="_on_exit_button_down"]
+[connection signal="toggled" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer/AD" to="." method="_on_ad_toggled"]
+[connection signal="toggled" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer/WS" to="." method="_on_ws_toggled"]
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Exit2" to="." method="_on_exit_button_down"]

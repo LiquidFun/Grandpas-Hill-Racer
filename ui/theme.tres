@@ -12,6 +12,7 @@ bg_color = Color(0.893355, 0.16114, 0.486989, 1)
 default_font = ExtResource("1_kmq5w")
 default_font_size = 64
 Button/colors/font_color = Color(0.886275, 0.709804, 0.34902, 1)
+CheckButton/constants/check_v_offset = 0
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_632l1")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_ehypr")
 Label/colors/font_color = Color(0.886275, 0.709804, 0.34902, 1)
