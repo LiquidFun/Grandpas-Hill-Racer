@@ -5,7 +5,7 @@ var level_scenes = [
 	"res://ui/main_menu/main_menu.tscn",
 	#"res://levels/marian.tscn", 
 	#"res://levels/brutus.tscn",
-	"res://levels/empty.tscn",
+	#"res://levels/empty.tscn",
 	"res://levels/level_01.tscn",
 	"res://levels/level_02.tscn",
 	"res://levels/level_03.tscn",

@@ -14,7 +14,7 @@ config/name="Grandpa's Hill Racer"
 config/version="0.1.0"
 run/main_scene="res://ui/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://screenshots/Icon.png"
 
 [autoload]
 
