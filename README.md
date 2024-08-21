@@ -1,8 +1,31 @@
-# Mountain Rover
+<h1 align=center>Grandpa's Hill Racer</h1>
 
-## Used assets
+[Try it here on itch.io!](https://liquidfun.itch.io/grandpas-hill-racer)
+
+![](./screenshots/Banner.png)
+
+It's time to visit Grandpa. Construct a vehicle from scrap part and make your way up the mountain!
+
+Created as part of GMTK 2024 in around 48 hours. The theme was "Built to Scale".
+
+![](./screenshots/Screenshot 2024-08-19 215011.png)
+
+![](./screenshots/Screenshot 2024-08-19 215422.png)
+
+![](./screenshots/Screenshot 2024-08-19 215555.png)
+
+![](./screenshots/Screenshot 2024-08-19 220126.png)
+
+![](./screenshots/Screenshot 2024-08-19 215747.png)
+
+![](./screenshots/Screenshot 2024-08-19 220321.png)
+
+# Credits 
+
+## Used plugins
 
 - smartshape2D
+- Rapier2D
 
 ## Art
 
@@ -11,15 +34,9 @@
 
 ## Sound
 
-- V12 Engine: https://pixabay.com/sound-effects/v12-motor-engine-218824/
 - Car engine: https://pixabay.com/sound-effects/car-sound-effect-126709/
-
 - Mouse Click : https://pixabay.com/sound-effects/mouse-click-117076/
-- https://pixabay.com/sound-effects/hit-by-a-wood-230542/
+- "hit by a wood": https://pixabay.com/sound-effects/hit-by-a-wood-230542/
 - "game music teste" music: https://pixabay.com/music/video-games-game-music-teste-204327/
-
-https://pixabay.com/sound-effects/rapid-wind-sound-effect-2-108400/
-https://pixabay.com/sound-effects/sweet-game-over-sound-effect-230470/
-https://pixabay.com/sound-effects/snap-sound-effect-226112/
-https://pixabay.com/sound-effects/sound-effect-for-games-131029/
-https://pixabay.com/sound-effects/wrong-47985/
+- https://pixabay.com/sound-effects/sound-effect-for-games-131029/
+- https://pixabay.com/sound-effects/wrong-47985/
