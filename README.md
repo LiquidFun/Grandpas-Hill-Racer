@@ -8,17 +8,17 @@ It's time to visit Grandpa. Construct a vehicle from scrap part and make your wa
 
 Created as part of GMTK 2024 in around 48 hours. The theme was "Built to Scale".
 
-![](./screenshots/Screenshot 2024-08-19 215011.png)
+![](./screenshots/Screenshot_2024-08-19_215011.png)
 
-![](./screenshots/Screenshot 2024-08-19 215422.png)
+![](./screenshots/Screenshot_2024-08-19_215422.png)
 
-![](./screenshots/Screenshot 2024-08-19 215555.png)
+![](./screenshots/Screenshot_2024-08-19_215555.png)
 
-![](./screenshots/Screenshot 2024-08-19 220126.png)
+![](./screenshots/Screenshot_2024-08-19_220126.png)
 
-![](./screenshots/Screenshot 2024-08-19 215747.png)
+![](./screenshots/Screenshot_2024-08-19_215747.png)
 
-![](./screenshots/Screenshot 2024-08-19 220321.png)
+![](./screenshots/Screenshot_2024-08-19_220321.png)
 
 # Credits 
 
