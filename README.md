@@ -22,6 +22,8 @@ Created as part of GMTK 2024 in around 48 hours. The theme was "Built to Scale".
 
 # Credits 
 
+Created by [Marian Zuska](https://github.com/MarianZuska) and [Brutenis Gliwa](https://github.com/LiquidFun)
+
 ## Used plugins
 
 - smartshape2D
